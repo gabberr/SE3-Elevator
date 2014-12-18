@@ -20,6 +20,8 @@ public class View {
 	private JPanel statusPanel = null;
 	private JPanel controlPanel = null;
 	
+	private JPanel[][] gridPanels = null;
+	
 	private int floorNum = 10;
 	private int elevatorNum = 2;
 	
@@ -88,9 +90,46 @@ public class View {
 	private void setUpStatusPanel(){
 		for(int i = 1; i <= elevatorNum; i++){
 			JPanel elevPanel = new JPanel();
+			elevPanel.setLayout(new GridLayout(7,1));
 			elevPanel.setBorder(new TitledBorder("Elev"+i));
+			JLabel posLabel = new JLabel("position: ");
+			JLabel dirLabel = new JLabel("direction: ");
+			JLabel loadLabel = new JLabel("load: ");
+			JLabel speedLabel = new JLabel("speed: ");
+			JLabel doorLabel = new JLabel("doors: ");
+			JLabel callsLabel = new JLabel("floor calls: ");
+			JLabel targetsLabel = new JLabel("floor targets: ");
+			
+			elevPanel.add(posLabel);
+			elevPanel.add(dirLabel);
+			elevPanel.add(loadLabel);
+			elevPanel.add(speedLabel);
+			elevPanel.add(doorLabel);
+			elevPanel.add(callsLabel);
+			elevPanel.add(targetsLabel);
+			
 			statusPanel.add(elevPanel);
 		}
+	}
+	
+	private void setUpControlPanel(){
+		for(int i = 1; i <= elevatorNum; i++){
+			JPanel elevPanel = new JPanel();
+			elevPanel.setLayout(new GridLayout(2,1));
+			elevPanel.setBorder(new TitledBorder("Elev"+i));
+			
+			JPanel autoOrManualPanel = new JPanel();
+			JPanel fromToPanel = new JPanel();
+			
+			elevPanel.add(autoOrManualPanel);
+			elevPanel.add(fromToPanel);
+			
+			controlPanel.add(elevPanel);
+		}
+	}
+	
+	public JPanel[][] getGridPanels(){
+		return gridPanels;
 	}
 }
 		
