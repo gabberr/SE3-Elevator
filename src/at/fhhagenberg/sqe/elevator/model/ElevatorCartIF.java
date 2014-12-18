@@ -10,8 +10,10 @@ public interface ElevatorCartIF {
 //	  direction direction being set where up=0, down=1 and uncommitted=2
 	  public void setCommitedDirection(int direction);
 	  public int getCommitedDirection();
+	  
+	  public int getWeight();
 	  // ELEVATOR_DIRECTION_UP
-	  int direction =2 ;
+	 //  int direction =2 ;
 
 //		/** State variable for elevator doors open.	 */
 

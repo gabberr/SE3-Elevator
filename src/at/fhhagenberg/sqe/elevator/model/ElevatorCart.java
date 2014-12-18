@@ -59,4 +59,10 @@ public class ElevatorCart implements ElevatorCartIF {
 		return 0;
 	}
 
+	@Override
+	public int getWeight() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
