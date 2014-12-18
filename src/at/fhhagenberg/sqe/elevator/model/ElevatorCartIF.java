@@ -12,6 +12,8 @@ public interface ElevatorCartIF {
 	  public int getCommitedDirection();
 	  
 	  public int getWeight();
+	  
+	  public boolean getElevatorButton(int floor);
 	  // ELEVATOR_DIRECTION_UP
 	 //  int direction =2 ;
 

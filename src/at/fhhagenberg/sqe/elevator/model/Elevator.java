@@ -3,25 +3,27 @@
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import at.fhhagenberg.sqe.elevator.model.floor.Floor;
 import sqelevator.IElevator;
 
 public class Elevator extends ElevatorAdapter {
 	
 	ArrayList<ElevatorCart> carts = new ArrayList<ElevatorCart>();
+	ArrayList<Floor> floors = new ArrayList<Floor>();
 
-	public Elevator(ArrayList<ElevatorCart> _carts) {
+	public Elevator(ArrayList<ElevatorCart> _carts, ArrayList<Floor> _floors) {
 		carts=_carts;
+		floors = _floors;
 	}
 	@Override
 	public int getCommittedDirection(int elevatorNumber) {
-		// TODO Auto-generated method stub
 		return carts.get(elevatorNumber).getCommitedDirection();
 	}
 
 	@Override
 	public boolean getElevatorButton(int elevatorNumber, int floor) {
 		// TODO Auto-generated method stub
-		return false;
+		return carts.get(elevatorNumber).getElevatorButton(floor);
 	}
 
 	@Override

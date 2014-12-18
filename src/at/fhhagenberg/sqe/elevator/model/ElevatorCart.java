@@ -11,7 +11,7 @@ public class ElevatorCart implements ElevatorCartIF {
 	private Queue<Integer> destinationFloors;
 	 
 	  
-	public ElevatorCart(Integer currentFloor, Queue<Integer> destinationFloors) {
+	public ElevatorCart(Integer currentFloor) {
 	    this.currentFloor = currentFloor;
 	    this.destinationFloors = new LinkedList<Integer>(); // Queue is abstract
 	  }
@@ -63,6 +63,11 @@ public class ElevatorCart implements ElevatorCartIF {
 	public int getWeight() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public boolean getElevatorButton(int floor) {
+		return destinationFloors.contains(floor);
 	}
 
 }
