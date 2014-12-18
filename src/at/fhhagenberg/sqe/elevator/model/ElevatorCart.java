@@ -54,7 +54,7 @@ public class ElevatorCart implements ElevatorCartIF {
 	}
 
 	@Override
-	public int getStatus() {
+	public int getDoorStatus() {
 		// TODO Auto-generated method stub
 		return 0;
 	}

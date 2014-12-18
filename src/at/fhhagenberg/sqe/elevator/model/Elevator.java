@@ -29,7 +29,7 @@ public class Elevator extends ElevatorAdapter {
 	@Override
 	public int getElevatorDoorStatus(int elevatorNumber) {
 		// TODO Auto-generated method stub
-		return carts.get(elevatorNumber).getStatus();
+		return carts.get(elevatorNumber).getDoorStatus();
 	}
 
 	@Override
