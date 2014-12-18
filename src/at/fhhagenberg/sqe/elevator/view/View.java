@@ -4,9 +4,14 @@ import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
 public class View {
@@ -50,6 +55,8 @@ public class View {
 		
 		controlPanel = new JPanel();
 		controlPanel.setBorder(new TitledBorder("Control"));
+		controlPanel.setLayout(new GridLayout(elevatorNum, 1));
+		setUpControlPanel();
 		
 		mainPanel.add(simulationPanel);
 		mainPanel.add(statusPanel);
@@ -120,6 +127,41 @@ public class View {
 			
 			JPanel autoOrManualPanel = new JPanel();
 			JPanel fromToPanel = new JPanel();
+			
+			JRadioButton automaticModeRadioButton = new JRadioButton("automatic");
+			JRadioButton manualModeRadioButton = new JRadioButton("manual");
+			manualModeRadioButton.setSelected(true);
+			ButtonGroup modeGroup = new ButtonGroup();
+			modeGroup.add(automaticModeRadioButton);
+			modeGroup.add(manualModeRadioButton);
+			
+			autoOrManualPanel.add(automaticModeRadioButton);
+			autoOrManualPanel.add(manualModeRadioButton);
+			
+			fromToPanel.setLayout(new GridLayout(2,1));
+			JPanel fromP = new JPanel();
+			fromP.setLayout(new GridLayout(1,2));
+			JPanel toP = new JPanel();
+			toP.setLayout(new GridLayout(1,2));
+			
+			String[] floorArray = new String[floorNum];
+			for(int j = 0; j < floorNum; j++){
+				floorArray[j] = "floor " + (j+1);
+			}
+			
+			JComboBox toFloorComboBox = new JComboBox(floorArray);
+			JComboBox fromFloorComboBox = new JComboBox(floorArray); 
+			
+			JLabel fromLabel = new JLabel("from: ");
+			JLabel toLabel = new JLabel("to: ");
+			
+			fromP.add(fromLabel);
+			fromP.add(fromFloorComboBox);
+			toP.add(toLabel);
+			toP.add(toFloorComboBox);
+			
+			fromToPanel.add(fromP);
+			fromToPanel.add(toP);
 			
 			elevPanel.add(autoOrManualPanel);
 			elevPanel.add(fromToPanel);
