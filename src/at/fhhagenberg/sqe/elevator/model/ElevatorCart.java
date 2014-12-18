@@ -70,4 +70,22 @@ public class ElevatorCart implements ElevatorCartIF {
 		return destinationFloors.contains(floor);
 	}
 
+	@Override
+	public int getElevatorDirection() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getCurrentPayload() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getSpeed() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
