@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import sqelevator.IElevator;
 
-public class Elevator implements IElevator {
+public class Elevator extends ElevatorAdapter {
 	
 	ArrayList<ElevatorCart> carts = new ArrayList<ElevatorCart>();
 
@@ -16,12 +16,6 @@ public class Elevator implements IElevator {
 	public int getCommittedDirection(int elevatorNumber) {
 		// TODO Auto-generated method stub
 		return carts.get(elevatorNumber).getCommitedDirection();
-	}
-
-	@Override
-	public int getElevatorAccel(int elevatorNumber) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	@Override
@@ -53,30 +47,6 @@ public class Elevator implements IElevator {
 	}
 
 	@Override
-	public int getElevatorSpeed(int elevatorNumber) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getElevatorWeight(int elevatorNumber) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public boolean getFloorButtonDown(int floor) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean getFloorButtonUp(int floor) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public int getFloorHeight() {
 		return 1;
 	}
@@ -87,45 +57,19 @@ public class Elevator implements IElevator {
 	}
 
 	@Override
-	public boolean getServicesFloors(int elevatorNumber, int floor) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public int getTarget(int elevatorNumber) {
-		// TODO Auto-generated method stub
-		return 0;
+		return carts.get(elevatorNumber).getNextDestination();
 	}
 
 	@Override
 	public void setCommittedDirection(int elevatorNumber, int direction) {
 		carts.get(elevatorNumber).setCommitedDirection(direction);
-
-	}
-
-	@Override
-	public void setServicesFloors(int elevatorNumber, int floor, boolean service) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void setTarget(int elevatorNumber, int target) {
-		carts.get(elevatorNumber).getNextDestination(); 
-
+		carts.get(elevatorNumber).addDestinatoin(target);
 	}
 
-	@Override
-	public int getElevatorCapacity(int elevatorNumber) throws RemoteException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public long getClockTick() throws RemoteException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 }
