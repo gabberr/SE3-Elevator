@@ -2,7 +2,7 @@
 
 import java.rmi.RemoteException;
 
-public class ElevatorControl implements IElevator {
+public class Elevator implements IElevator {
 
 	@Override
 	public int getCommittedDirection(int elevatorNumber) {
