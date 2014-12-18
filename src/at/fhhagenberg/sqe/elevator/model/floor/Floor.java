@@ -1,6 +1,7 @@
 package at.fhhagenberg.sqe.elevator.model.floor;
 
 public class Floor implements FloorIF {
+	
 	private int floorId;
 	private boolean floorButtonUpPressed = false;
 	private boolean floorButtonDownPressed = false;
