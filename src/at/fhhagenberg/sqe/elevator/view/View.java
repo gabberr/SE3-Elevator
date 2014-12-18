@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -27,8 +28,8 @@ public class View {
 	
 	private JPanel[][] gridPanels = null;
 	
-	private int floorNum = 10;
-	private int elevatorNum = 2;
+	private int floorNum = 25;
+	private int elevatorNum = 3;
 	
 	
 	public View(){
@@ -45,7 +46,7 @@ public class View {
 		mainPanel.setLayout(new GridLayout(1, 3));
 		
 		simulationPanel = new JPanel();
-		simulationPanel.setLayout(new GridLayout((floorNum+1), (elevatorNum+1)));
+		simulationPanel.setLayout(new GridLayout((floorNum+2), (elevatorNum+1)));
 		setUpSimulationPanel();
 		
 		statusPanel = new JPanel();
@@ -70,23 +71,23 @@ public class View {
 	}
 	
 	private void setUpSimulationPanel(){
-		JPanel[][] gridPanels = new JPanel[floorNum+1][elevatorNum+1];
-		for(int i = 0; i < (floorNum+1); i++){
+		JPanel[][] gridPanels = new JPanel[floorNum+2][elevatorNum+1];
+		for(int i = 0; i < (floorNum+2); i++){
 			for(int j = 0; j < (elevatorNum+1); j++){
 				if(i == 0){
 					if(j == 0){
-						gridPanels[i][j] = new SimulationGridPlaceHolderPanel(i, j, "floorTitle");
+						gridPanels[i][j] = new SimulationGridPlaceHolderPanel(i, j, "floorTitle", floorNum);
 						simulationPanel.add(gridPanels[i][j]);
 					}else if(j > 0){
-						gridPanels[i][j] = new SimulationGridPlaceHolderPanel(i, j, "elevatorTitle");
+						gridPanels[i][j] = new SimulationGridPlaceHolderPanel(i, j, "elevatorTitle", floorNum);
 						simulationPanel.add(gridPanels[i][j]);
 					}
 				}else if(i > 0){
 					if( j == 0 ){
-						gridPanels[i][j] = new SimulationGridPlaceHolderPanel(i, j, "floorNum");
+						gridPanels[i][j] = new SimulationGridPlaceHolderPanel(i, j, "floorNum", floorNum);
 						simulationPanel.add(gridPanels[i][j]);
 					}else if( j > 0 ){
-						gridPanels[i][j] = new SimulationGridPlaceHolderPanel(i, j, "elevatorPos");
+						gridPanels[i][j] = new SimulationGridPlaceHolderPanel(i, j, "elevatorPos", floorNum);
 						simulationPanel.add(gridPanels[i][j]);
 					}
 				}
@@ -138,7 +139,7 @@ public class View {
 			autoOrManualPanel.add(automaticModeRadioButton);
 			autoOrManualPanel.add(manualModeRadioButton);
 			
-			fromToPanel.setLayout(new GridLayout(2,1));
+			fromToPanel.setLayout(new GridLayout(3, 1));
 			JPanel fromP = new JPanel();
 			fromP.setLayout(new GridLayout(1,2));
 			JPanel toP = new JPanel();
@@ -160,8 +161,11 @@ public class View {
 			toP.add(toLabel);
 			toP.add(toFloorComboBox);
 			
+			JButton executeButton = new JButton("execute");
+			
 			fromToPanel.add(fromP);
 			fromToPanel.add(toP);
+			fromToPanel.add(executeButton);
 			
 			elevPanel.add(autoOrManualPanel);
 			elevPanel.add(fromToPanel);

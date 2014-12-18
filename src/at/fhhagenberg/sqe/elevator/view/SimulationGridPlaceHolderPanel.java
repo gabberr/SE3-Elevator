@@ -22,12 +22,14 @@ public class SimulationGridPlaceHolderPanel extends JPanel {
 	private int panelType = 0;
 	private int rowNum = 0;
 	private int colNum = 0;
+	private int floorNum = 0;
 	
-	public SimulationGridPlaceHolderPanel(int rowNum, int colNum, String gridType){
+	public SimulationGridPlaceHolderPanel(int rowNum, int colNum, String gridType, int floorNum){
 		super();
 		this.rowNum = rowNum;
 		this.colNum = colNum;
 		this.gridType = gridType;
+		this.floorNum = floorNum;
 		determineType();
 	}
 	
@@ -44,11 +46,11 @@ public class SimulationGridPlaceHolderPanel extends JPanel {
 		}else if(rowNum > 0){
 			if( colNum == 0 ){
 				setBorder(BorderFactory.createLineBorder(Color.BLACK));
-				JLabel label = new JLabel(""+ rowNum);
+				JLabel label = new JLabel(""+ (floorNum - rowNum + 1));
 				this.add(label);
 			}else if( colNum > 0 ){
 				setBorder(BorderFactory.createLineBorder(Color.lightGray));
-				JLabel label = new JLabel(); //new JLabel("(" + rowNum + ", " + colNum + ")");
+				JLabel label = new JLabel("(" + rowNum + ", " + colNum + ")"); //new JLabel(); 
 				this.add(label);
 			}
 		}
