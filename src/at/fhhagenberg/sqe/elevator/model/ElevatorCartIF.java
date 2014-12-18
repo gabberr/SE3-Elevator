@@ -12,13 +12,18 @@ public interface ElevatorCartIF {
 	  public int getCommitedDirection();
 	  
 	  public int getWeight();
+	  
+	  public boolean getElevatorButton(int floor);
 	  // ELEVATOR_DIRECTION_UP
 	 //  int direction =2 ;
+	  public int getElevatorDirection();
+	  public int getCurrentPayload();
+	  public int getSpeed();
 
 //		/** State variable for elevator doors open.	 */
 
   //  ELEVATOR_DOORS_OPEN = 1, ELEVATOR_DOORS_CLOSED=2
-	  public int getStatus();
+	  public int getDoorStatus();
 		
 
 

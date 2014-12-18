@@ -11,7 +11,7 @@ public class ElevatorCart implements ElevatorCartIF {
 	private Queue<Integer> destinationFloors;
 	 
 	  
-	public ElevatorCart(Integer currentFloor, Queue<Integer> destinationFloors) {
+	public ElevatorCart(Integer currentFloor) {
 	    this.currentFloor = currentFloor;
 	    this.destinationFloors = new LinkedList<Integer>(); // Queue is abstract
 	  }
@@ -54,13 +54,36 @@ public class ElevatorCart implements ElevatorCartIF {
 	}
 
 	@Override
-	public int getStatus() {
+	public int getDoorStatus() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public int getWeight() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean getElevatorButton(int floor) {
+		return destinationFloors.contains(floor);
+	}
+
+	@Override
+	public int getElevatorDirection() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getCurrentPayload() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getSpeed() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
