@@ -50,7 +50,7 @@ public class SimulationGridPlaceHolderPanel extends JPanel {
 				this.add(label);
 			}else if( colNum > 0 ){
 				setBorder(BorderFactory.createLineBorder(Color.lightGray));
-				JLabel label = new JLabel("(" + rowNum + ", " + colNum + ")"); //new JLabel(); 
+				JLabel label = new JLabel(); //new JLabel("(" + rowNum + ", " + colNum + ")"); 
 				this.add(label);
 			}
 		}
