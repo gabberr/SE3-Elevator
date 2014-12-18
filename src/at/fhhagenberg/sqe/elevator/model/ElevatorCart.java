@@ -4,14 +4,14 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 
-public class Elevator implements ElevatorIF {
+public class ElevatorCart implements ElevatorCartIF {
 	  
 	private Integer currentFloor; 
 	
 	private Queue<Integer> destinationFloors;
 	 
 	  
-	public Elevator(Integer currentFloor, Queue<Integer> destinationFloors) {
+	public ElevatorCart(Integer currentFloor, Queue<Integer> destinationFloors) {
 	    this.currentFloor = currentFloor;
 	    this.destinationFloors = new LinkedList<Integer>(); // Queue is abstract
 	  }
@@ -39,6 +39,24 @@ public class Elevator implements ElevatorIF {
 	@Override
 	public int getCurrentFloor() {
 		return currentFloor;
+	}
+
+	@Override
+	public void setCommitedDirection(int direction) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int getCommitedDirection() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getStatus() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
