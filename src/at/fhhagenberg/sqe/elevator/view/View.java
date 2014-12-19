@@ -1,18 +1,16 @@
 package at.fhhagenberg.sqe.elevator.view;
 
-import java.awt.Color;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 
-import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JSeparator;
-import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
 public class View {
@@ -31,6 +29,8 @@ public class View {
 	private int floorNum = 25;
 	private int elevatorNum = 3;
 	
+	ArrayList<JPanel> statusPanelSubPanels = new ArrayList<JPanel>();
+	ArrayList<JPanel> controlPanelSubPanels = new ArrayList<JPanel>();
 	
 	public View(){
 		buildUI();
@@ -116,6 +116,7 @@ public class View {
 			elevPanel.add(callsLabel);
 			elevPanel.add(targetsLabel);
 			
+			statusPanelSubPanels.add(elevPanel);
 			statusPanel.add(elevPanel);
 		}
 	}
@@ -139,9 +140,7 @@ public class View {
 			autoOrManualPanel.add(automaticModeRadioButton);
 			autoOrManualPanel.add(manualModeRadioButton);
 			
-			fromToPanel.setLayout(new GridLayout(3, 1));
-			JPanel fromP = new JPanel();
-			fromP.setLayout(new GridLayout(1,2));
+			fromToPanel.setLayout(new GridLayout(2, 1));
 			JPanel toP = new JPanel();
 			toP.setLayout(new GridLayout(1,2));
 			
@@ -156,26 +155,32 @@ public class View {
 			JLabel fromLabel = new JLabel("from: ");
 			JLabel toLabel = new JLabel("to: ");
 			
-			fromP.add(fromLabel);
-			fromP.add(fromFloorComboBox);
 			toP.add(toLabel);
 			toP.add(toFloorComboBox);
 			
 			JButton executeButton = new JButton("execute");
 			
-			fromToPanel.add(fromP);
 			fromToPanel.add(toP);
 			fromToPanel.add(executeButton);
 			
 			elevPanel.add(autoOrManualPanel);
 			elevPanel.add(fromToPanel);
 			
+			controlPanelSubPanels.add(elevPanel);
 			controlPanel.add(elevPanel);
 		}
 	}
 	
 	public JPanel[][] getGridPanels(){
 		return gridPanels;
+	}
+	
+	public ArrayList<JPanel> getStatusPanelSubPanels(){
+		return statusPanelSubPanels;
+	}
+	
+	public ArrayList<JPanel> getControlPanelSubPanels(){
+		return controlPanelSubPanels;
 	}
 }
 		
