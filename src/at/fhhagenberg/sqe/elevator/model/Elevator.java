@@ -8,12 +8,21 @@ import sqelevator.IElevator;
 
 public class Elevator extends ElevatorAdapter {
 	
-	ArrayList<ElevatorCart> carts = new ArrayList<ElevatorCart>();
-	ArrayList<Floor> floors = new ArrayList<Floor>();
+	ArrayList<ElevatorCart> carts = null;
+	
+
+	ArrayList<Floor> floors = null;
 
 	public Elevator(ArrayList<ElevatorCart> _carts, ArrayList<Floor> _floors) {
+		carts = new ArrayList<ElevatorCart>();
+		floors = new ArrayList<Floor>();
 		carts=_carts;
 		floors = _floors;
+	}
+	public Elevator()
+	{
+		carts = new ArrayList<ElevatorCart>();
+		floors = new ArrayList<Floor>();
 	}
 	@Override
 	public int getCommittedDirection(int elevatorNumber) {
@@ -72,6 +81,34 @@ public class Elevator extends ElevatorAdapter {
 	public void setTarget(int elevatorNumber, int target) {
 		carts.get(elevatorNumber).addDestinatoin(target);
 	}
+<<<<<<< HEAD
 	
+=======
+
+	/**
+	 * @return the carts
+	 */
+	public ArrayList<ElevatorCart> getCarts() {
+		return this.carts;
+	}
+	/**
+	 * @param carts the carts to set
+	 */
+	public void setCarts(ArrayList<ElevatorCart> carts) {
+		this.carts = carts;
+	}
+	/**
+	 * @return the floors
+	 */
+	public ArrayList<Floor> getFloors() {
+		return this.floors;
+	}
+	/**
+	 * @param floors the floors to set
+	 */
+	public void setFloors(ArrayList<Floor> floors) {
+		this.floors = floors;
+	}
+>>>>>>> d09a2630c20ad5cd1eef0ff0ca7fe94751141615
 
 }
