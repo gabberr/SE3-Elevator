@@ -27,7 +27,7 @@ public class View {
 	private JPanel[][] gridPanels = null;
 	
 	private int floorNum = 25;
-	private int elevatorNum = 3;
+	private int elevatorNum = 6;
 	
 	ArrayList<JPanel> statusPanelSubPanels = new ArrayList<JPanel>();
 	ArrayList<JComboBox> controlPanelComboBoxes = new ArrayList<JComboBox>();

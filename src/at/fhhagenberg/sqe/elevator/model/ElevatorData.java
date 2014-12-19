@@ -1,83 +1,160 @@
 package at.fhhagenberg.sqe.elevator.model;
 
+import java.util.ArrayList;
+
 public class ElevatorData {
 	
-	int commitedDirection = 0;
-	int elevatorAccel =     0;
-	int elevatorButton = 	0;
-	int elevatorDoorStatus= 0;
-	int elevatorFloor = 	0;
-	int elevatorNumber=		0;
-	int elevatorPosition =	0;
-	int elevatorSpeed = 	0;
-	int elevatorWeight = 	0;
-	int elevatorCapacity = 	0;
-	ArrayList <int> elevatorPressedButtons = new ArrayList <int>();
-	int targetFloor = 0;		
-	ArrayList <int> floorButtonDown= 	0;
-	ArrayList <int> floorButtonsDown = new ArrayList <int>();
+	private ArrayList<ElevatorBox> elevatorBoxesList = new ArrayList<ElevatorData.ElevatorBox>();
+	private ArrayList <Integer> floorButtonsUp= new ArrayList<Integer>();
+	private ArrayList <Integer> floorButtonsDown = new ArrayList<Integer>();
+	
+	public ElevatorData(){
+		
+	}
+	
+	public void addElevatorBox(int elevatorDir, int elevatorAccel,
+			int elevatorDoorStatus, int elevatorClosestFloor,
+			int elevatorNumber, int elevatorPosition, int elevatorSpeed,
+			int elevatorWeight, int elevatorCapacity, int targetFloor,
+			ArrayList<Boolean> elevatorPressedButtons){
+		
+		elevatorBoxesList.add(new ElevatorBox(elevatorDir, elevatorAccel,
+			elevatorDoorStatus, elevatorClosestFloor,
+			elevatorNumber, elevatorPosition, elevatorSpeed,
+			elevatorWeight, elevatorCapacity, targetFloor,
+			elevatorPressedButtons));
+	}
+	
+	public class ElevatorBox{
+		private int elevatorDir = 0;
+		private int elevatorAccel = 0;
+		private int elevatorDoorStatus= 0;
+		private int elevatorClosestFloor = 0;
+		private int elevatorNumber=	0;
+		private int elevatorPosition = 0;
+		private int elevatorSpeed = 0;
+		private int elevatorWeight = 0;
+		private int elevatorCapacity = 	0;
+		private int targetFloor = 0;
+		private ArrayList <Boolean> elevatorPressedButtons = null;	
+		
+		
+		private ElevatorBox(){
+			elevatorPressedButtons = new ArrayList<Boolean>();
+			floorButtonsUp = new ArrayList<Integer>();
+			floorButtonsDown = new ArrayList<Integer>();
+		}
 
-public boolean getFloorButtonDown(int floor) throws java.rmi.RemoteException; 
+		public ElevatorBox(int elevatorDir, int elevatorAccel,
+				int elevatorDoorStatus, int elevatorClosestFloor,
+				int elevatorNumber, int elevatorPosition, int elevatorSpeed,
+				int elevatorWeight, int elevatorCapacity, int targetFloor,
+				ArrayList<Boolean> elevatorPressedButtons) {
+			super();
+			this.elevatorDir = elevatorDir;
+			this.elevatorAccel = elevatorAccel;
+			this.elevatorDoorStatus = elevatorDoorStatus;
+			this.elevatorClosestFloor = elevatorClosestFloor;
+			this.elevatorNumber = elevatorNumber;
+			this.elevatorPosition = elevatorPosition;
+			this.elevatorSpeed = elevatorSpeed;
+			this.elevatorWeight = elevatorWeight;
+			this.elevatorCapacity = elevatorCapacity;
+			this.targetFloor = targetFloor;
+			this.elevatorPressedButtons = elevatorPressedButtons;
+		}
 
-	/**
-	 * Provides the status of the Up button on specified floor (on/off). 
-	 * @param floor - floor number whose Up button status is being retrieved 
-	 * @return returns boolean to indicate if button is active (true) or not (false)
-	 */
-	public boolean getFloorButtonUp(int floor) throws java.rmi.RemoteException; 
+		public int getElevatorDir() {
+			return elevatorDir;
+		}
 
-	/**
-	 * Retrieves the height of the floors in the building. 
-	 * @return floor height (ft)
-	 */
-	public int getFloorHeight() throws java.rmi.RemoteException; 
+		public void setElevatorDir(int elevatorDir) {
+			this.elevatorDir = elevatorDir;
+		}
 
-	/**
-	 * Retrieves the number of floors in the building. 
-	 * @return total number of floors
-	 */
-	public int getFloorNum() throws java.rmi.RemoteException; 
+		public int getElevatorAccel() {
+			return elevatorAccel;
+		}
 
-	/** 
-	 * Retrieves whether or not the specified elevator will service the specified floor (yes/no). 
-	 * @param elevatorNumber elevator number whose service is being retrieved
-	 * @param floor floor whose service status by the specified elevator is being retrieved
-	 * @return service status whether the floor is serviced by the specified elevator (yes=true,no=false)
-	 */
-	public boolean getServicesFloors(int elevatorNumber, int floor) throws java.rmi.RemoteException; 
+		public void setElevatorAccel(int elevatorAccel) {
+			this.elevatorAccel = elevatorAccel;
+		}
 
-	/**
-	 * Retrieves the floor target of the specified elevator. 
-	 * @param elevatorNumber elevator number whose target floor is being retrieved
-	 * @return current floor target of the specified elevator
-	 */
+		public int getElevatorDoorStatus() {
+			return elevatorDoorStatus;
+		}
 
-	/**
-	 * Sets the committed direction of the specified elevator (up / down / uncommitted). 
-	 * @param elevatorNumber elevator number whose committed direction is being set
-	 * @param direction direction being set where up=0, down=1 and uncommitted=2
-	 */
-	public void setCommittedDirection(int elevatorNumber, int direction) throws java.rmi.RemoteException;
+		public void setElevatorDoorStatus(int elevatorDoorStatus) {
+			this.elevatorDoorStatus = elevatorDoorStatus;
+		}
 
-	/**
-	 * Sets whether or not the specified elevator will service the specified floor (yes/no). 
-	 * @param elevatorNumber elevator number whose service is being defined
-	 * @param floor floor whose service by the specified elevator is being set
-	 * @param service indicates whether the floor is serviced by the specified elevator (yes=true,no=false)
-	 */
-	public void setServicesFloors(int elevatorNumber, int floor, boolean service) throws java.rmi.RemoteException; 
+		public int getElevatorClosestFloor() {
+			return elevatorClosestFloor;
+		}
 
-	/**
-	 * Sets the floor target of the specified elevator. 
-	 * @param elevatorNumber elevator number whose target floor is being set
-	 * @param target floor number which the specified elevator is to target
-	 */
-	public void +(int elevatorNumber, int target) throws java.rmi.RemoteException; 
+		public void setElevatorClosestFloor(int elevatorClosestFloor) {
+			this.elevatorClosestFloor = elevatorClosestFloor;
+		}
 
-	/**
-	 * Retrieves the current clock tick of the elevator control system. 
-	 * @return clock tick
-	 */
-	public long getClockTick() throws java.rmi.RemoteException;
+		public int getElevatorNumber() {
+			return elevatorNumber;
+		}
+
+		public void setElevatorNumber(int elevatorNumber) {
+			this.elevatorNumber = elevatorNumber;
+		}
+
+		public int getElevatorPosition() {
+			return elevatorPosition;
+		}
+
+		public void setElevatorPosition(int elevatorPosition) {
+			this.elevatorPosition = elevatorPosition;
+		}
+
+		public int getElevatorSpeed() {
+			return elevatorSpeed;
+		}
+
+		public void setElevatorSpeed(int elevatorSpeed) {
+			this.elevatorSpeed = elevatorSpeed;
+		}
+
+		public int getElevatorWeight() {
+			return elevatorWeight;
+		}
+
+		public void setElevatorWeight(int elevatorWeight) {
+			this.elevatorWeight = elevatorWeight;
+		}
+
+		public int getElevatorCapacity() {
+			return elevatorCapacity;
+		}
+
+		public void setElevatorCapacity(int elevatorCapacity) {
+			this.elevatorCapacity = elevatorCapacity;
+		}
+
+		public int getTargetFloor() {
+			return targetFloor;
+		}
+
+		public void setTargetFloor(int targetFloor) {
+			this.targetFloor = targetFloor;
+		}
+
+		public ArrayList<Boolean> getElevatorPressedButtons() {
+			return elevatorPressedButtons;
+		}
+		
+		public void addElevatorPressedButtons(boolean b){
+			elevatorPressedButtons.add(b);
+		}
+
+		public void setElevatorPressedButtons(ArrayList<Boolean> elevatorPressedButtons) {
+			this.elevatorPressedButtons = elevatorPressedButtons;
+		}
+	}
 
 }
