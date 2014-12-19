@@ -81,9 +81,6 @@ public class Elevator extends ElevatorAdapter {
 	public void setTarget(int elevatorNumber, int target) {
 		carts.get(elevatorNumber).addDestinatoin(target);
 	}
-<<<<<<< HEAD
-	
-=======
 
 	/**
 	 * @return the carts
@@ -109,6 +106,6 @@ public class Elevator extends ElevatorAdapter {
 	public void setFloors(ArrayList<Floor> floors) {
 		this.floors = floors;
 	}
->>>>>>> d09a2630c20ad5cd1eef0ff0ca7fe94751141615
+
 
 }
