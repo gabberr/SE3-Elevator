@@ -5,24 +5,30 @@ import java.util.ArrayList;
 public class ElevatorData {
 	
 	private ArrayList<ElevatorBox> elevatorBoxesList = new ArrayList<ElevatorData.ElevatorBox>();
-	private ArrayList <Integer> floorButtonsUp= new ArrayList<Integer>();
-	private ArrayList <Integer> floorButtonsDown = new ArrayList<Integer>();
+	private ArrayList <Integer> floorButtonsUp= null;
+	private ArrayList <Integer> floorButtonsDown = null;
 	
 	public ElevatorData(){
 		
 	}
 	
 	public void addElevatorBox(int elevatorDir, int elevatorAccel,
-			int elevatorDoorStatus, int elevatorClosestFloor,
-			int elevatorNumber, int elevatorPosition, int elevatorSpeed,
+			int elevatorDoorStatus, int elevatorClosestFloor, int elevatorPosition, int elevatorSpeed,
 			int elevatorWeight, int elevatorCapacity, int targetFloor,
 			ArrayList<Boolean> elevatorPressedButtons){
 		
 		elevatorBoxesList.add(new ElevatorBox(elevatorDir, elevatorAccel,
-			elevatorDoorStatus, elevatorClosestFloor,
-			elevatorNumber, elevatorPosition, elevatorSpeed,
+			elevatorDoorStatus, elevatorClosestFloor, elevatorPosition, elevatorSpeed,
 			elevatorWeight, elevatorCapacity, targetFloor,
 			elevatorPressedButtons));
+	}
+	
+	public void setFloorButtonsUp(ArrayList<Integer> fbu){
+		floorButtonsUp = fbu;
+	}
+	
+	public void setFloorButtonsDown(ArrayList<Integer> fbd){
+		floorButtonsDown = fbd;
 	}
 	
 	public class ElevatorBox{
@@ -30,7 +36,6 @@ public class ElevatorData {
 		private int elevatorAccel = 0;
 		private int elevatorDoorStatus= 0;
 		private int elevatorClosestFloor = 0;
-		private int elevatorNumber=	0;
 		private int elevatorPosition = 0;
 		private int elevatorSpeed = 0;
 		private int elevatorWeight = 0;
@@ -41,13 +46,10 @@ public class ElevatorData {
 		
 		private ElevatorBox(){
 			elevatorPressedButtons = new ArrayList<Boolean>();
-			floorButtonsUp = new ArrayList<Integer>();
-			floorButtonsDown = new ArrayList<Integer>();
 		}
 
 		public ElevatorBox(int elevatorDir, int elevatorAccel,
-				int elevatorDoorStatus, int elevatorClosestFloor,
-				int elevatorNumber, int elevatorPosition, int elevatorSpeed,
+				int elevatorDoorStatus, int elevatorClosestFloor, int elevatorPosition, int elevatorSpeed,
 				int elevatorWeight, int elevatorCapacity, int targetFloor,
 				ArrayList<Boolean> elevatorPressedButtons) {
 			super();
@@ -55,7 +57,6 @@ public class ElevatorData {
 			this.elevatorAccel = elevatorAccel;
 			this.elevatorDoorStatus = elevatorDoorStatus;
 			this.elevatorClosestFloor = elevatorClosestFloor;
-			this.elevatorNumber = elevatorNumber;
 			this.elevatorPosition = elevatorPosition;
 			this.elevatorSpeed = elevatorSpeed;
 			this.elevatorWeight = elevatorWeight;
@@ -94,14 +95,6 @@ public class ElevatorData {
 
 		public void setElevatorClosestFloor(int elevatorClosestFloor) {
 			this.elevatorClosestFloor = elevatorClosestFloor;
-		}
-
-		public int getElevatorNumber() {
-			return elevatorNumber;
-		}
-
-		public void setElevatorNumber(int elevatorNumber) {
-			this.elevatorNumber = elevatorNumber;
 		}
 
 		public int getElevatorPosition() {
