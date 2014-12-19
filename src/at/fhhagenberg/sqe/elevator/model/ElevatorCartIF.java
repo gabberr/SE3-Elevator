@@ -3,6 +3,7 @@ package at.fhhagenberg.sqe.elevator.model;
 public interface ElevatorCartIF {
 	  public void moveUp();
 	  public void moveDown();
+	  public void move();
 	  public void addDestinatoin(Integer destination);
 	  public int getNextDestination();
 	  public int getCurrentFloor();
@@ -19,6 +20,8 @@ public interface ElevatorCartIF {
 	  public int getElevatorDirection();
 	  public int getCurrentPayload();
 	  public int getSpeed();
+	  
+	  public void setSpeed(int speed);
 
 //		/** State variable for elevator doors open.	 */
 
