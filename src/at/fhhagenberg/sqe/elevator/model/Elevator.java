@@ -72,6 +72,6 @@ public class Elevator extends ElevatorAdapter {
 	public void setTarget(int elevatorNumber, int target) {
 		carts.get(elevatorNumber).addDestinatoin(target);
 	}
-
+	
 
 }
