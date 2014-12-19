@@ -9,6 +9,9 @@ public class ElevatorCart implements ElevatorCartIF {
 	private Integer currentFloor; 
 	
 	private Queue<Integer> destinationFloors;
+	
+	private Integer commitedDirection;
+	private Integer speed;
 	 
 	  
 	public ElevatorCart(Integer currentFloor) {
@@ -33,7 +36,11 @@ public class ElevatorCart implements ElevatorCartIF {
 
 	@Override
 	public int getNextDestination() {
-		return destinationFloors.peek();
+		Integer nextDestination = destinationFloors.peek();
+		if(nextDestination !=null)
+			return nextDestination;
+		else
+			return -1;
 	}
 
 	@Override
@@ -43,20 +50,27 @@ public class ElevatorCart implements ElevatorCartIF {
 
 	@Override
 	public void setCommitedDirection(int direction) {
-		// TODO Auto-generated method stub
+		commitedDirection = direction;
 		
 	}
 
 	@Override
 	public int getCommitedDirection() {
-		// TODO Auto-generated method stub
-		return 0;
+		return commitedDirection;
 	}
 
 	@Override
 	public int getDoorStatus() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		// TODO: add other statuses, opening and closeing
+		
+		if(speed == 0) {
+			return Elevator.ELEVATOR_DOORS_OPEN;
+		}
+		else {
+			return Elevator.ELEVATOR_DOORS_CLOSED;
+		}
+//		return 0;
 	}
 
 	@Override
@@ -85,7 +99,7 @@ public class ElevatorCart implements ElevatorCartIF {
 	@Override
 	public int getSpeed() {
 		// TODO Auto-generated method stub
-		return 0;
+		return speed;
 	}
 
 }
