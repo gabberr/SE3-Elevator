@@ -24,7 +24,7 @@ public class SimulationGridPlaceHolderPanel extends JPanel {
 	private int colNum = 0;
 	private int floorNum = 0;
 	
-	public SimulationGridPlaceHolderPanel(int rowNum, int colNum, String gridType, int floorNum){
+	public SimulationGridPlaceHolderPanel(int rowNum, int colNum, String gridType, int floorNum, int elevatorNum){
 		super();
 		this.rowNum = rowNum;
 		this.colNum = colNum;
@@ -52,6 +52,9 @@ public class SimulationGridPlaceHolderPanel extends JPanel {
 				setBorder(BorderFactory.createLineBorder(Color.lightGray));
 				JLabel label = new JLabel(); //new JLabel("(" + rowNum + ", " + colNum + ")"); 
 				this.add(label);
+				if(rowNum == floorNum+1){
+					label.setText("-");
+				}
 			}
 		}
 	}

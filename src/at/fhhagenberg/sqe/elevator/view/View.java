@@ -30,7 +30,8 @@ public class View {
 	private int elevatorNum = 3;
 	
 	ArrayList<JPanel> statusPanelSubPanels = new ArrayList<JPanel>();
-	ArrayList<JPanel> controlPanelSubPanels = new ArrayList<JPanel>();
+	ArrayList<JComboBox> controlPanelComboBoxes = new ArrayList<JComboBox>();
+	ArrayList<JButton> controlPanelButtons = new ArrayList<JButton>();
 	
 	public View(){
 		buildUI();
@@ -71,23 +72,23 @@ public class View {
 	}
 	
 	private void setUpSimulationPanel(){
-		JPanel[][] gridPanels = new JPanel[floorNum+2][elevatorNum+1];
+		gridPanels = new JPanel[floorNum+2][elevatorNum+1];
 		for(int i = 0; i < (floorNum+2); i++){
 			for(int j = 0; j < (elevatorNum+1); j++){
 				if(i == 0){
 					if(j == 0){
-						gridPanels[i][j] = new SimulationGridPlaceHolderPanel(i, j, "floorTitle", floorNum);
+						gridPanels[i][j] = new SimulationGridPlaceHolderPanel(i, j, "floorTitle", floorNum, elevatorNum);
 						simulationPanel.add(gridPanels[i][j]);
 					}else if(j > 0){
-						gridPanels[i][j] = new SimulationGridPlaceHolderPanel(i, j, "elevatorTitle", floorNum);
+						gridPanels[i][j] = new SimulationGridPlaceHolderPanel(i, j, "elevatorTitle", floorNum, elevatorNum);
 						simulationPanel.add(gridPanels[i][j]);
 					}
 				}else if(i > 0){
 					if( j == 0 ){
-						gridPanels[i][j] = new SimulationGridPlaceHolderPanel(i, j, "floorNum", floorNum);
+						gridPanels[i][j] = new SimulationGridPlaceHolderPanel(i, j, "floorNum", floorNum, elevatorNum);
 						simulationPanel.add(gridPanels[i][j]);
 					}else if( j > 0 ){
-						gridPanels[i][j] = new SimulationGridPlaceHolderPanel(i, j, "elevatorPos", floorNum);
+						gridPanels[i][j] = new SimulationGridPlaceHolderPanel(i, j, "elevatorPos", floorNum, elevatorNum);
 						simulationPanel.add(gridPanels[i][j]);
 					}
 				}
@@ -150,15 +151,15 @@ public class View {
 			}
 			
 			JComboBox toFloorComboBox = new JComboBox(floorArray);
-			JComboBox fromFloorComboBox = new JComboBox(floorArray); 
+			controlPanelComboBoxes.add(toFloorComboBox);
 			
-			JLabel fromLabel = new JLabel("from: ");
 			JLabel toLabel = new JLabel("to: ");
 			
 			toP.add(toLabel);
 			toP.add(toFloorComboBox);
 			
 			JButton executeButton = new JButton("execute");
+			controlPanelButtons.add(executeButton);
 			
 			fromToPanel.add(toP);
 			fromToPanel.add(executeButton);
@@ -166,9 +167,16 @@ public class View {
 			elevPanel.add(autoOrManualPanel);
 			elevPanel.add(fromToPanel);
 			
-			controlPanelSubPanels.add(elevPanel);
 			controlPanel.add(elevPanel);
 		}
+	}
+	
+	public int getFloorsNumber(){
+		return floorNum;
+	}
+	
+	public void setFloorsNumber(int fn){
+		floorNum = fn;
 	}
 	
 	public JPanel[][] getGridPanels(){
@@ -179,8 +187,13 @@ public class View {
 		return statusPanelSubPanels;
 	}
 	
-	public ArrayList<JPanel> getControlPanelSubPanels(){
-		return controlPanelSubPanels;
+	public ArrayList<JComboBox> getControlPanelComboBoxes(){
+		return controlPanelComboBoxes;
 	}
+	
+	public ArrayList<JButton> getControlPanelButtons(){
+		return controlPanelButtons;
+	}
+	
 }
 		
