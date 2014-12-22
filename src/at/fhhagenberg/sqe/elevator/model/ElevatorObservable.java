@@ -15,6 +15,12 @@ public class ElevatorObservable extends Observable {
 		controller = _eif;
 	}
 
+	public void start() {
+	};
+
+	public void stop() {
+	};
+
 	public void readValues() throws RemoteException {
 
 		Integer numberOfElevators = controller.getElevatorNum();
@@ -34,7 +40,7 @@ public class ElevatorObservable extends Observable {
 			Integer commitedDirection = controller
 					.getCommittedDirection(elevatorNumber);
 			Integer target = controller.getTarget(elevatorNumber);
-			
+
 			Integer direction = controller.getCommittedDirection(i);
 			Integer speed = controller.getElevatorSpeed(i);
 			Integer position = controller.getElevatorPosition(i);
@@ -44,9 +50,8 @@ public class ElevatorObservable extends Observable {
 
 			Integer closestFloor = controller.getElevatorFloor(i);
 			Integer capacity = controller.getElevatorCapacity(i);
-			Integer elevatorWeight = controller
-					.getElevatorWeight(i);
-			
+			Integer elevatorWeight = controller.getElevatorWeight(i);
+
 			ArrayList<Boolean> elevatorPressedButtons = new ArrayList<Boolean>();
 
 			for (int j = 0; j < numberOfFloors; j++) {
@@ -55,7 +60,9 @@ public class ElevatorObservable extends Observable {
 				elevatorPressedButtons.add(val);
 
 			}
-			data.addElevatorBox(direction, accl, doorStatus, closestFloor, position, speed, elevatorWeight, capacity, target, elevatorPressedButtons);
+			data.addElevatorBox(direction, accl, doorStatus, closestFloor,
+					position, speed, elevatorWeight, capacity, target,
+					elevatorPressedButtons);
 		}
 
 		// floor information
@@ -73,9 +80,60 @@ public class ElevatorObservable extends Observable {
 		}
 		data.setFloorButtonsDown(floorButtonsDown);
 		data.setFloorButtonsUp(floorButtonsUp);
-		
+
 		currentValue = data;
 		notifyObservers(currentValue);
-		
+
+	}
+
+	private void displayElevatorSettings() throws RemoteException {
+		System.out.println("ELEVATOR SETTINGS");
+
+		System.out.println("Current clock tick: " + controller.getClockTick());
+
+		System.out.println("Number of elevators: "
+				+ controller.getElevatorNum());
+		System.out.println("Number of floor: " + controller.getFloorNum());
+		System.out.println("Floor height: " + controller.getFloorHeight());
+
+		System.out.print("Floor buttons Up pressed: ");
+		for (int floor = 0; floor < controller.getFloorNum(); floor++) {
+			System.out.print(controller.getFloorButtonUp(floor) ? "1" : "0");
+		}
+		System.out.println();
+		System.out.print("Floor buttons Down pressed: ");
+		for (int floor = 0; floor < controller.getFloorNum(); floor++) {
+			System.out.print(controller.getFloorButtonDown(floor) ? "1" : "0");
+		}
+		System.out.println();
+
+		for (int elevator = 0; elevator < controller.getElevatorNum(); elevator++) {
+			System.out.println("Settings of elevator number: " + elevator);
+			System.out.println("  Floor: "
+					+ controller.getElevatorFloor(elevator));
+			System.out.println("  Position: "
+					+ controller.getElevatorPosition(elevator));
+			System.out.println("  Target: " + controller.getTarget(elevator));
+			System.out.println("  Committed direction: "
+					+ controller.getCommittedDirection(elevator));
+			System.out.println("  Door status: "
+					+ controller.getElevatorDoorStatus(elevator));
+			System.out.println("  Speed: "
+					+ controller.getElevatorSpeed(elevator));
+			System.out.println("  Acceleration: "
+					+ controller.getElevatorAccel(elevator));
+			System.out.println("  Capacity: "
+					+ controller.getElevatorCapacity(elevator));
+			System.out.println("  Weight: "
+					+ controller.getElevatorWeight(elevator));
+			System.out.print("  Buttons pressed: ");
+			for (int floor = 0; floor < controller.getFloorNum(); floor++) {
+				System.out
+						.print(controller.getElevatorButton(elevator, floor) ? "1"
+								: "0");
+			}
+			System.out.println();
+		}
+
 	}
 }
