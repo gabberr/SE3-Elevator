@@ -12,6 +12,10 @@ public class ElevatorData {
 		
 	}
 	
+	public ArrayList<ElevatorBox> getElevatorBoxesList(){
+		return this.elevatorBoxesList;
+	}
+	
 	public void addElevatorBox(int elevatorDir, int elevatorAccel,
 			int elevatorDoorStatus, int elevatorClosestFloor, int elevatorPosition, int elevatorSpeed,
 			int elevatorWeight, int elevatorCapacity, int targetFloor,

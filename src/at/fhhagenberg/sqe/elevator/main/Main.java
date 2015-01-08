@@ -1,7 +1,7 @@
 package at.fhhagenberg.sqe.elevator.main;
 
 
-import at.fhhagenberg.sqe.elevator.controller.Controller;
+import at.fhhagenberg.sqe.elevator.controller.ViewController;
 //comment
 import at.fhhagenberg.sqe.elevator.view.View;
 
@@ -12,7 +12,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		View view = new View();
-		Controller controller = new Controller(view);
+		ViewController controller = new ViewController(view);
 	}
 
 }
