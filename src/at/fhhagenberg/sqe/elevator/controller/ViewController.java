@@ -40,7 +40,6 @@ public class ViewController implements Observer{
 		addCarts();
 		addFloors();
 		this.elevator = new Elevator(carts,floors);
-		
 		setUpButtonListeners();
 	}
 	
@@ -86,6 +85,36 @@ public class ViewController implements Observer{
 			JLabel tempLabel = (JLabel) view.getGridPanels()[i][elevatorNum].getComponent(0);
 			tempLabel.setText("");
 		}
+	}
+	
+	public String elevatorDirectionToString(int status) {
+		String s = "Unknown";
+		switch(status) {
+		case IElevator.ELEVATOR_DIRECTION_DOWN:
+			return "Down";
+		case IElevator.ELEVATOR_DIRECTION_UNCOMMITTED:
+			return "Uncommitted";
+		case IElevator.ELEVATOR_DIRECTION_UP:
+			return "Up";
+	
+		}
+		
+		return s;
+	}
+	public String elevatorDoorToString(int status) {
+		String s = "Unknown";
+		switch(status) {
+		case IElevator.ELEVATOR_DOORS_CLOSED:
+			return "Door closed.";
+		case IElevator.ELEVATOR_DOORS_CLOSING:
+			return "Door closing.";
+		case IElevator.ELEVATOR_DOORS_OPEN:
+			return "Door open";
+		case IElevator.ELEVATOR_DOORS_OPENING:
+			return "Door opening";
+		}
+		
+		return s;
 	}
 
 	@Override
