@@ -26,7 +26,7 @@ public class View {
 	
 	private JPanel[][] gridPanels = null;
 	
-	private int floorNum = 25;
+	private int floorNum = 10;
 	private int elevatorNum = 2;
 	
 	ArrayList<JPanel> statusPanelSubPanels = new ArrayList<JPanel>();
@@ -146,8 +146,8 @@ public class View {
 			toP.setLayout(new GridLayout(1,2));
 			
 			String[] floorArray = new String[floorNum];
-			for(int j = 0; j < floorNum; j++){
-				floorArray[j] = "floor " + (j+1);
+			for(int j = 1; j <= floorNum; j++){
+				floorArray[j] = "floor " + (j);
 			}
 			
 			JComboBox toFloorComboBox = new JComboBox(floorArray);
