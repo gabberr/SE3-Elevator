@@ -76,8 +76,15 @@ public class ViewController implements Observer{
 		if(o instanceof ElevatorObservable){
 			ElevatorData elevData = (ElevatorData) arg;
 			for(int i = 0; i < elevData.getElevatorBoxesList().size(); i++){
+			
+				
 				JLabel positionLabel = (JLabel) view.getStatusPanelSubPanels().get(i).getComponent(0);
-				positionLabel.setText("position: " + elevData.getElevatorBoxesList().get(i).getElevatorPosition());
+				Integer position = elevData.getElevatorBoxesList().get(i).getElevatorPosition();
+				positionLabel.setText("position: " + position);
+				
+				JLabel tempLabel = (JLabel) view.getGridPanels()[view.getFloorsNumber() - position + 1][1].getComponent(0); 
+				tempLabel.setText("----");
+			
 				
 				JLabel directionLabel = (JLabel) view.getStatusPanelSubPanels().get(i).getComponent(1);
 				directionLabel.setText("direction: " + elevData.getElevatorBoxesList().get(i).getElevatorDir());
@@ -90,6 +97,7 @@ public class ViewController implements Observer{
 				
 				JLabel doorLabel = (JLabel) view.getStatusPanelSubPanels().get(i).getComponent(4);
 				doorLabel.setText("doors: " + elevData.getElevatorBoxesList().get(i).getElevatorDoorStatus());
+				
 				
 			}
 			
