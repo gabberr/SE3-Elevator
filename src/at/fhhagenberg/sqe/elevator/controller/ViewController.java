@@ -100,14 +100,17 @@ public class ViewController implements Observer{
 				Integer position = elevData.getElevatorBoxesList().get(i).getElevatorPosition();
 				
 				positionLabel.setText("position: " + position);
+				if(i == 0){
+					JLabel tempLabel = (JLabel) view.getGridPanels()[view.getFloorsNumber() - position][1].getComponent(0); 
+					emptyGridLabels(1);
+					tempLabel.setText("----");
+				}
 				
-				JLabel tempLabel = (JLabel) view.getGridPanels()[view.getFloorsNumber() - position][1].getComponent(0); 
-				emptyGridLabels(1);
-				tempLabel.setText("----");
-				
-				JLabel tempLabel1 = (JLabel) view.getGridPanels()[view.getFloorsNumber() - position][2].getComponent(0); 
-				emptyGridLabels(2);
-				tempLabel1.setText("----");
+				if(i == 1){
+					JLabel tempLabel1 = (JLabel) view.getGridPanels()[view.getFloorsNumber() - position][2].getComponent(0); 
+					emptyGridLabels(2);
+					tempLabel1.setText("----");
+				}
 			
 				
 				JLabel directionLabel = (JLabel) view.getStatusPanelSubPanels().get(i).getComponent(1);

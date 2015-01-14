@@ -2,7 +2,7 @@ package at.fhhagenberg.sqe.elevator.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
+//import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -43,7 +43,7 @@ public class ElevatorAdapterTest {
     @Before
     public void setUp() throws Exception {
         m_mock = new ElevatorMock();
-        m_adapter.setIElevatorRef(m_mock);
+        //m_adapter.setIElevatorRef(m_mock);
     }
 
     /**
