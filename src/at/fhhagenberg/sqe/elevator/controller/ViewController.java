@@ -143,7 +143,7 @@ public class ViewController implements Observer{
 			
 				
 				JLabel directionLabel = (JLabel) view.getStatusPanelSubPanels().get(i).getComponent(1);
-				directionLabel.setText("direction: " + elevData.getElevatorBoxesList().get(i).getElevatorDir());
+				directionLabel.setText("direction: " + elevatorDirectionToString(elevData.getElevatorBoxesList().get(i).getElevatorDir()));
 				
 				JLabel loadLabel = (JLabel) view.getStatusPanelSubPanels().get(i).getComponent(2);
 				loadLabel.setText("load: " + elevData.getElevatorBoxesList().get(i).getElevatorWeight());
@@ -152,7 +152,7 @@ public class ViewController implements Observer{
 				speedLabel.setText("speed: " + elevData.getElevatorBoxesList().get(i).getElevatorDir());
 				
 				JLabel doorLabel = (JLabel) view.getStatusPanelSubPanels().get(i).getComponent(4);
-				doorLabel.setText("doors: " + elevData.getElevatorBoxesList().get(i).getElevatorDoorStatus());
+				doorLabel.setText("doors: " + elevatorDoorToString(elevData.getElevatorBoxesList().get(i).getElevatorDoorStatus()));
 				
 				
 			}
