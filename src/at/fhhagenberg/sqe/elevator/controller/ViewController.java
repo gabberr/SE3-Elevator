@@ -80,9 +80,12 @@ public class ViewController implements Observer{
 	private void addCarts() {
 		carts.add(cart);
 	}
-
-	public void simulateMoving(){
-		   
+	
+	private void emptyGridLabels(int elevatorNum){
+		for(int i = 0; i < view.getFloorsNumber(); i++){
+			JLabel tempLabel = (JLabel) view.getGridPanels()[i][elevatorNum].getComponent(0);
+			tempLabel.setText("");
+		}
 	}
 
 	@Override
@@ -96,15 +99,10 @@ public class ViewController implements Observer{
 				
 				Integer position = elevData.getElevatorBoxesList().get(i).getElevatorPosition();
 				
-//				Integer elevatorFloor = elevData.getElevatorBoxesList().get(i).get
-				
-				System.out.println(" position :" + position);
 				positionLabel.setText("position: " + position);
 				
 				JLabel tempLabel = (JLabel) view.getGridPanels()[view.getFloorsNumber() - position + 1][1].getComponent(0); 
-				
-				System.out.println(" position :" + position);
-				
+				emptyGridLabels(1);
 				tempLabel.setText("----");
 			
 				
