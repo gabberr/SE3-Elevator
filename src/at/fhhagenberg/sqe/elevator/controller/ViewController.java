@@ -53,11 +53,11 @@ public class ViewController implements Observer{
 				public void actionPerformed(ActionEvent e) {
 					String targetFloorString = (String) view.getControlPanelComboBoxes().get(comboBoxIndex).getSelectedItem();
 					String[] tokens = targetFloorString.split(" ", 0);
-					int targetFloorNumber = Integer.parseInt(tokens[1]);
+					int targetFloorNumber = Integer.parseInt(tokens[1]) - 1;
 					
-					JLabel tempLabel = (JLabel) view.getGridPanels()[view.getFloorsNumber() - targetFloorNumber + 1][comboBoxIndex+1].getComponent(0);
+					//JLabel tempLabel = (JLabel) view.getGridPanels()[view.getFloorsNumber() - targetFloorNumber + 1][comboBoxIndex+1].getComponent(0);
 					try {
-						ielevator.setTarget(0, targetFloorNumber);
+						ielevator.setTarget(comboBoxIndex, targetFloorNumber);
 					} catch (RemoteException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -82,7 +82,7 @@ public class ViewController implements Observer{
 	}
 	
 	private void emptyGridLabels(int elevatorNum){
-		for(int i = 0; i < view.getFloorsNumber(); i++){
+		for(int i = 1; i < view.getFloorsNumber()+1; i++){
 			JLabel tempLabel = (JLabel) view.getGridPanels()[i][elevatorNum].getComponent(0);
 			tempLabel.setText("");
 		}
@@ -101,9 +101,13 @@ public class ViewController implements Observer{
 				
 				positionLabel.setText("position: " + position);
 				
-				JLabel tempLabel = (JLabel) view.getGridPanels()[view.getFloorsNumber() - position + 1][1].getComponent(0); 
+				JLabel tempLabel = (JLabel) view.getGridPanels()[view.getFloorsNumber() - position][1].getComponent(0); 
 				emptyGridLabels(1);
 				tempLabel.setText("----");
+				
+				JLabel tempLabel1 = (JLabel) view.getGridPanels()[view.getFloorsNumber() - position][2].getComponent(0); 
+				emptyGridLabels(2);
+				tempLabel1.setText("----");
 			
 				
 				JLabel directionLabel = (JLabel) view.getStatusPanelSubPanels().get(i).getComponent(1);

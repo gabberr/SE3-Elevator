@@ -72,8 +72,8 @@ public class View {
 	}
 	
 	private void setUpSimulationPanel(){
-		gridPanels = new JPanel[floorNum+2][elevatorNum+1];
-		for(int i = 0; i < (floorNum+2); i++){
+		gridPanels = new JPanel[floorNum+1][elevatorNum+1];
+		for(int i = 0; i < (floorNum+1); i++){
 			for(int j = 0; j < (elevatorNum+1); j++){
 				if(i == 0){
 					if(j == 0){
