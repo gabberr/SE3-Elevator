@@ -1,7 +1,9 @@
 package at.fhhagenberg.sqe.elevator.main;
 
 
+import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.Date;
 import java.util.Timer;
@@ -15,38 +17,53 @@ import at.fhhagenberg.sqe.elevator.model.ElevatorObservable;
 import at.fhhagenberg.sqe.elevator.view.View;
 
 public class Main {
+	
+	private IElevator controller;
+	ElevatorObservable client;
+	View view;
+	ViewController viewCon;
+	
+	public Main(){
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		try {
-			IElevator controller = (IElevator) Naming.lookup("rmi://localhost/ElevatorSim");
-			
-			final ElevatorObservable client = new ElevatorObservable(controller);
-
-			
-			View view = new View();
-			ViewController controllerView = new ViewController(view, controller);
-			
-			client.addObserver(controllerView);
+	}
+	
+	public void connect() throws MalformedURLException, RemoteException, NotBoundException {
+		controller = (IElevator) Naming.lookup("rmi://localhost/ElevatorSim");
+		client = new ElevatorObservable(controller);
 		
-			
-			Timer timer = new Timer();
-			timer.scheduleAtFixedRate(new TimerTask() {
-				@Override
-				public void run(){
-					try {
-						client.readValues();
-					} catch (RemoteException e) {
-						e.printStackTrace();
-					}
+	}
+	
+	public void start() {
+		view = new View();
+		viewCon= new ViewController(view, controller);
+		
+		client.addObserver(viewCon);
+		
+		Timer timer = new Timer();
+		timer.scheduleAtFixedRate(new TimerTask() {
+			@Override
+			public void run(){
+				try {
+					client.readValues();
+				} catch (RemoteException e) {
+					e.printStackTrace();
 				}
-				
-			}, new Date(), 100);
+			}
 			
+		}, new Date(), 100);
 		
-		} catch (Exception e) {
+		
+	}
+	
+	
+	public static void main(String[] args) {
+
+		Main main = new Main();
+		try {
+			main.connect();
+			main.start();
+		} catch (MalformedURLException | RemoteException | NotBoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

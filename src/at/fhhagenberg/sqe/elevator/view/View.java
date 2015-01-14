@@ -147,7 +147,7 @@ public class View {
 			
 			String[] floorArray = new String[floorNum];
 			for(int j = 1; j <= floorNum; j++){
-				floorArray[j] = "floor " + (j);
+				floorArray[j-1] = "floor " + (j);
 			}
 			
 			JComboBox toFloorComboBox = new JComboBox(floorArray);
