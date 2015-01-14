@@ -54,6 +54,7 @@ public class ViewController implements Observer{
 					String targetFloorString = (String) view.getControlPanelComboBoxes().get(comboBoxIndex).getSelectedItem();
 					String[] tokens = targetFloorString.split(" ", 0);
 					int targetFloorNumber = Integer.parseInt(tokens[1]);
+					
 					JLabel tempLabel = (JLabel) view.getGridPanels()[view.getFloorsNumber() - targetFloorNumber + 1][comboBoxIndex+1].getComponent(0);
 					try {
 						ielevator.setTarget(0, targetFloorNumber);
@@ -62,6 +63,8 @@ public class ViewController implements Observer{
 						e1.printStackTrace();
 					}
 					
+//					JLabel tempLabel = (JLabel) view.getGridPanels()[view.getFloorsNumber() - targetFloorNumber + 1][comboBoxIndex+1].getComponent(0); 
+//					tempLabel.setText("----");
 				}
 			});
 		}
