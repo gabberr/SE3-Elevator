@@ -2,12 +2,15 @@ package at.fhhagenberg.sqe.elevator.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.StringTokenizer;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import sqelevator.IElevator;
 
 import java.util.ArrayList;
 
@@ -25,13 +28,15 @@ public class ViewController implements Observer{
 	Floor floor= null;
 	ArrayList<ElevatorCart> carts = null;
 	ArrayList<Floor> floors = null;
+	IElevator ielevator;
 	
-	public ViewController(View view){
+	public ViewController(View view, IElevator ielevator){
 		this.view = view;
 		cart = new ElevatorCart(0);
 		floor = new Floor();
 		carts = new ArrayList<ElevatorCart>();
 		floors = new ArrayList<Floor>();
+		this.ielevator = ielevator;
 		addCarts();
 		addFloors();
 		this.elevator = new Elevator(carts,floors);
@@ -39,7 +44,7 @@ public class ViewController implements Observer{
 		setUpButtonListeners();
 	}
 	
-	private void setUpButtonListeners(){
+	private void setUpButtonListeners() {
 		for(int i = 0; i < view.getControlPanelButtons().size(); i++){
 			final int comboBoxIndex = i;
 			view.getControlPanelButtons().get(i).addActionListener(new ActionListener() {
@@ -49,8 +54,14 @@ public class ViewController implements Observer{
 					String targetFloorString = (String) view.getControlPanelComboBoxes().get(comboBoxIndex).getSelectedItem();
 					String[] tokens = targetFloorString.split(" ", 0);
 					int targetFloorNumber = Integer.parseInt(tokens[1]);
-					JLabel tempLabel = (JLabel) view.getGridPanels()[view.getFloorsNumber() - targetFloorNumber + 1][comboBoxIndex+1].getComponent(0); 
-					tempLabel.setText("----");
+					JLabel tempLabel = (JLabel) view.getGridPanels()[view.getFloorsNumber() - targetFloorNumber + 1][comboBoxIndex+1].getComponent(0);
+					try {
+						ielevator.setTarget(0, targetFloorNumber);
+					} catch (RemoteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
 				}
 			});
 		}
@@ -79,10 +90,18 @@ public class ViewController implements Observer{
 			
 				
 				JLabel positionLabel = (JLabel) view.getStatusPanelSubPanels().get(i).getComponent(0);
+				
 				Integer position = elevData.getElevatorBoxesList().get(i).getElevatorPosition();
+				
+//				Integer elevatorFloor = elevData.getElevatorBoxesList().get(i).get
+				
+				System.out.println(" position :" + position);
 				positionLabel.setText("position: " + position);
 				
 				JLabel tempLabel = (JLabel) view.getGridPanels()[view.getFloorsNumber() - position + 1][1].getComponent(0); 
+				
+				System.out.println(" position :" + position);
+				
 				tempLabel.setText("----");
 			
 				

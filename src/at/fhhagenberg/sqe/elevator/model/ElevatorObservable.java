@@ -44,7 +44,7 @@ public class ElevatorObservable extends Observable {
 
 			Integer direction = controller.getCommittedDirection(i);
 			Integer speed = controller.getElevatorSpeed(i);
-			Integer position = controller.getElevatorPosition(i);
+			Integer position = controller.getElevatorPosition(i) / floorHeight;
 			Integer accl = controller.getElevatorAccel(i);
 			Integer doorStatus = controller
 					.getElevatorDoorStatus(elevatorNumber);

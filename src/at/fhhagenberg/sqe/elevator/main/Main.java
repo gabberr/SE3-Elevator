@@ -27,7 +27,7 @@ public class Main {
 
 			
 			View view = new View();
-			ViewController controllerView = new ViewController(view);
+			ViewController controllerView = new ViewController(view, controller);
 			
 			client.addObserver(controllerView);
 		
