@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class ElevatorData {
 	
+
 	private ArrayList<ElevatorBox> elevatorBoxesList = new ArrayList<ElevatorData.ElevatorBox>();
 	private ArrayList <Boolean> floorButtonsUp= null;
 	private ArrayList <Boolean> floorButtonsDown = null;
@@ -34,7 +35,14 @@ public class ElevatorData {
 	public void setFloorButtonsDown(ArrayList<Boolean> fbd){
 		floorButtonsDown = fbd;
 	}
-	
+	public ArrayList<Boolean> getFloorButtonsUp() {
+		return floorButtonsUp;
+	}
+
+	public ArrayList<Boolean> getFloorButtonsDown() {
+		return floorButtonsDown;
+	}
+
 	public class ElevatorBox{
 		private int elevatorDir = 0;
 		private int elevatorAccel = 0;
@@ -152,6 +160,7 @@ public class ElevatorData {
 		public void setElevatorPressedButtons(ArrayList<Boolean> elevatorPressedButtons) {
 			this.elevatorPressedButtons = elevatorPressedButtons;
 		}
+		
 	}
 
 }
