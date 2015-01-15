@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>ElevatorCart.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">ElevatorTests (2) (2015.01.15 14:01:57)</a> &gt; <a href="../../index.html" class="el_group">Elevator</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">at.fhhagenberg.sqe.elevator.model</a> &gt; <span class="el_source">ElevatorCart.java</span></div><h1>ElevatorCart.java</h1><pre class="source lang-java linenums">package at.fhhagenberg.sqe.elevator.model;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+import sqelevator.IElevator;
+
+
+public class ElevatorCart implements ElevatorCartIF {
+	  
+	private Integer currentFloor; 
+	
+	private Queue&lt;Integer&gt; destinationFloors;
+	
+	private Integer commitedDirection;
+	private Integer speed;
+	 
+	  
+<span class="fc" id="L19">	public ElevatorCart(Integer currentFloor) {</span>
+<span class="fc" id="L20">	    this.currentFloor = currentFloor;</span>
+<span class="fc" id="L21">	    this.destinationFloors = new LinkedList&lt;Integer&gt;(); // Queue is abstract</span>
+<span class="fc" id="L22">	  }</span>
+	  
+	@Override
+	public void moveUp() {
+<span class="fc" id="L26">		currentFloor++;</span>
+<span class="fc" id="L27">	}</span>
+
+	@Override
+	public void moveDown() {
+<span class="fc" id="L31">		currentFloor--;	</span>
+<span class="fc" id="L32">	}</span>
+
+	@Override
+	public void addDestination(Integer destination) {
+<span class="fc" id="L36">		destinationFloors.add(destination);	</span>
+<span class="fc" id="L37">	}</span>
+
+	@Override
+	public int getNextDestination() {
+<span class="fc" id="L41">		Integer nextDestination = destinationFloors.peek();</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">		if(nextDestination !=null)</span>
+<span class="fc" id="L43">			return nextDestination;</span>
+		else
+<span class="fc" id="L45">			return -1;</span>
+	}
+
+	@Override
+	public int getCurrentFloor() {
+<span class="fc" id="L50">		return currentFloor;</span>
+	}
+
+	@Override
+	public void setCommitedDirection(int direction) {
+<span class="fc" id="L55">		commitedDirection = direction;	</span>
+<span class="fc" id="L56">	}</span>
+
+	@Override
+	public int getCommitedDirection() {
+<span class="fc" id="L60">		return commitedDirection;</span>
+	}
+
+	@Override
+	public int getDoorStatus() {
+		
+		// TODO: add other statuses, opening and closeing
+		
+<span class="pc bpc" id="L68" title="1 of 2 branches missed.">		if(speed == 0) {</span>
+<span class="nc" id="L69">			return Elevator.ELEVATOR_DOORS_OPEN;</span>
+		}
+		else {
+<span class="fc" id="L72">			return Elevator.ELEVATOR_DOORS_CLOSED;</span>
+		}
+	}
+
+	@Override
+	public int getWeight() {
+		// TODO Auto-generated method stub
+<span class="fc" id="L79">		return 0;</span>
+	}
+
+	@Override
+	public boolean getElevatorButton(int floor) {
+<span class="fc" id="L84">		return destinationFloors.contains(floor);</span>
+	}
+
+	@Override
+	public int getElevatorDirection() {
+		// TODO Auto-generated method stub
+<span class="fc" id="L90">		return 0;</span>
+	}
+
+	@Override
+	public int getCurrentPayload() {
+		// TODO Auto-generated method stub
+<span class="fc" id="L96">		return 0;</span>
+	}
+
+	@Override
+	public int getSpeed() {
+		// TODO Auto-generated method stub
+<span class="fc" id="L102">		return speed;</span>
+	}
+
+	@Override
+	public void setSpeed(int _speed) {
+<span class="fc" id="L107">		speed = _speed;</span>
+<span class="fc" id="L108">		if(speed &gt; 0) {</span>
+			
+		}
+		
+<span class="fc" id="L112">	}</span>
+	/**
+	 * Moves it in the commited direction
+	 */
+	@Override
+	public void move() {
+<span class="pc bpc" id="L118" title="1 of 2 branches missed.">		if(commitedDirection == Elevator.ELEVATOR_DIRECTION_DOWN)</span>
+<span class="nc" id="L119">			moveDown();</span>
+<span class="pc bpc" id="L120" title="1 of 2 branches missed.">		if(commitedDirection == Elevator.ELEVATOR_DIRECTION_UP)</span>
+<span class="nc" id="L121">			moveUp();</span>
+		
+<span class="fc" id="L123">	}</span>
+	private void moveElevator(){
+			
+			// -1 is null
+<span class="nc bnc" id="L127" title="All 2 branches missed.">			if(this.getCommitedDirection() != IElevator.ELEVATOR_DIRECTION_UNCOMMITTED) {</span>
+<span class="nc" id="L128">				Integer start = this.getCurrentFloor();</span>
+<span class="nc" id="L129">				Integer destination = this.getNextDestination();</span>
+				
+				// if its already in the destination floor
+<span class="nc bnc" id="L132" title="All 2 branches missed.">				if(start == destination)</span>
+<span class="nc" id="L133">					this.setCommitedDirection(IElevator.ELEVATOR_DIRECTION_UNCOMMITTED);</span>
+				
+<span class="nc bnc" id="L135" title="All 2 branches missed.">				while(this.getCurrentFloor() != destination) {</span>
+					// move either up or down
+<span class="nc" id="L137">					this.setSpeed(10);</span>
+<span class="nc" id="L138">					this.move();</span>
+					
+				}
+<span class="nc" id="L141">				this.setCommitedDirection(IElevator.ELEVATOR_DIRECTION_UNCOMMITTED);</span>
+				
+				
+				
+			}
+			
+<span class="nc" id="L147">		}</span>
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>ElevatorTests (2) (2015.01.15 14:01:57)</div></body></html>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>ViewController.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">ElevatorTests (2) (2015.01.15 14:01:57)</a> &gt; <a href="../../index.html" class="el_group">Elevator</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">at.fhhagenberg.sqe.elevator.controller</a> &gt; <span class="el_source">ViewController.java</span></div><h1>ViewController.java</h1><pre class="source lang-java linenums"><span class="fc" id="L1">package at.fhhagenberg.sqe.elevator.controller;</span>
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
+import java.util.Observable;
+import java.util.Observer;
+import java.util.StringTokenizer;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import sqelevator.IElevator;
+
+import java.util.ArrayList;
+
+import at.fhhagenberg.sqe.elevator.model.Elevator;
+import at.fhhagenberg.sqe.elevator.model.ElevatorCart;
+import at.fhhagenberg.sqe.elevator.model.ElevatorData;
+import at.fhhagenberg.sqe.elevator.model.ElevatorObservable;
+import at.fhhagenberg.sqe.elevator.model.floor.Floor;
+import at.fhhagenberg.sqe.elevator.view.View;
+
+public class ViewController implements Observer{
+<span class="fc" id="L25">	View view = null;</span>
+<span class="fc" id="L26">	Elevator elevator = null;</span>
+<span class="fc" id="L27">	ElevatorCart cart= null;</span>
+<span class="fc" id="L28">	Floor floor= null;</span>
+<span class="fc" id="L29">	ArrayList&lt;ElevatorCart&gt; carts = null;</span>
+<span class="fc" id="L30">	ArrayList&lt;Floor&gt; floors = null;</span>
+	IElevator ielevator;
+	
+<span class="fc" id="L33">	public ViewController(View view, IElevator ielevator){</span>
+<span class="fc" id="L34">		this.view = view;</span>
+<span class="fc" id="L35">		cart = new ElevatorCart(0);</span>
+<span class="fc" id="L36">		floor = new Floor();</span>
+<span class="fc" id="L37">		carts = new ArrayList&lt;ElevatorCart&gt;();</span>
+<span class="fc" id="L38">		floors = new ArrayList&lt;Floor&gt;();</span>
+<span class="fc" id="L39">		this.ielevator = ielevator;</span>
+<span class="fc" id="L40">		addCarts();</span>
+<span class="fc" id="L41">		addFloors();</span>
+<span class="fc" id="L42">		this.elevator = new Elevator(carts,floors);</span>
+<span class="fc" id="L43">		setUpButtonListeners();</span>
+<span class="fc" id="L44">	}</span>
+	
+	private void setUpButtonListeners() {
+<span class="fc bfc" id="L47" title="All 2 branches covered.">		for(int i = 0; i &lt; view.getControlPanelButtons().size(); i++){</span>
+<span class="fc" id="L48">			final int comboBoxIndex = i;</span>
+<span class="fc" id="L49">			view.getControlPanelButtons().get(i).addActionListener(new ActionListener() {</span>
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L53">					String targetFloorString = (String) view.getControlPanelComboBoxes().get(comboBoxIndex).getSelectedItem();</span>
+<span class="nc" id="L54">					String[] tokens = targetFloorString.split(&quot; &quot;, 0);</span>
+<span class="nc" id="L55">					int targetFloorNumber = Integer.parseInt(tokens[1]) - 1;</span>
+					
+					//JLabel tempLabel = (JLabel) view.getGridPanels()[view.getFloorsNumber() - targetFloorNumber + 1][comboBoxIndex+1].getComponent(0);
+					try {
+<span class="nc" id="L59">						ielevator.setTarget(comboBoxIndex, targetFloorNumber);</span>
+<span class="nc" id="L60">					} catch (RemoteException e1) {</span>
+						// TODO Auto-generated catch block
+<span class="nc" id="L62">						e1.printStackTrace();</span>
+					}
+					
+//					JLabel tempLabel = (JLabel) view.getGridPanels()[view.getFloorsNumber() - targetFloorNumber + 1][comboBoxIndex+1].getComponent(0); 
+//					tempLabel.setText(&quot;----&quot;);
+<span class="nc" id="L67">				}</span>
+			});
+		}
+<span class="fc" id="L70">	}</span>
+	
+   private void addFloors() {
+//	   for (int i = 0; i &lt; 10; i++) {
+//		   floor.setFloorId(i+1);
+//		   floors.add(floor);
+//	   }	  
+<span class="fc" id="L77">	}</span>
+
+	private void addCarts() {
+<span class="fc" id="L80">		carts.add(cart);</span>
+<span class="fc" id="L81">	}</span>
+	
+	private void emptyGridLabels(int elevatorNum){
+<span class="fc bfc" id="L84" title="All 2 branches covered.">		for(int i = 1; i &lt; view.getFloorsNumber()+1; i++){</span>
+<span class="fc" id="L85">			JLabel tempLabel = (JLabel) view.getGridPanels()[i][elevatorNum].getComponent(0);</span>
+<span class="fc" id="L86">			tempLabel.setText(&quot;&quot;);</span>
+		}
+<span class="fc" id="L88">	}</span>
+	
+	public String elevatorDirectionToString(int status) {
+<span class="fc" id="L91">		String s = &quot;Unknown&quot;;</span>
+<span class="pc bpc" id="L92" title="3 of 4 branches missed.">		switch(status) {</span>
+		case IElevator.ELEVATOR_DIRECTION_DOWN:
+<span class="nc" id="L94">			return &quot;Down&quot;;</span>
+		case IElevator.ELEVATOR_DIRECTION_UNCOMMITTED:
+<span class="fc" id="L96">			return &quot;Uncommitted&quot;;</span>
+		case IElevator.ELEVATOR_DIRECTION_UP:
+<span class="nc" id="L98">			return &quot;Up&quot;;</span>
+	
+		}
+		
+<span class="nc" id="L102">		return s;</span>
+	}
+	public String elevatorDoorToString(int status) {
+<span class="fc" id="L105">		String s = &quot;Unknown&quot;;</span>
+<span class="pc bpc" id="L106" title="4 of 5 branches missed.">		switch(status) {</span>
+		case IElevator.ELEVATOR_DOORS_CLOSED:
+<span class="nc" id="L108">			return &quot;Door closed.&quot;;</span>
+		case IElevator.ELEVATOR_DOORS_CLOSING:
+<span class="nc" id="L110">			return &quot;Door closing.&quot;;</span>
+		case IElevator.ELEVATOR_DOORS_OPEN:
+<span class="fc" id="L112">			return &quot;Door open&quot;;</span>
+		case IElevator.ELEVATOR_DOORS_OPENING:
+<span class="nc" id="L114">			return &quot;Door opening&quot;;</span>
+		}
+		
+<span class="nc" id="L117">		return s;</span>
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+<span class="pc bpc" id="L122" title="1 of 2 branches missed.">		if(o instanceof ElevatorObservable){</span>
+<span class="fc" id="L123">			ElevatorData elevData = (ElevatorData) arg;</span>
+<span class="fc bfc" id="L124" title="All 2 branches covered.">			for(int i = 0; i &lt; elevData.getElevatorBoxesList().size(); i++){</span>
+			
+				
+<span class="fc" id="L127">				JLabel positionLabel = (JLabel) view.getStatusPanelSubPanels().get(i).getComponent(0);</span>
+				
+<span class="fc" id="L129">				Integer position = elevData.getElevatorBoxesList().get(i).getElevatorPosition();</span>
+				
+<span class="fc" id="L131">				positionLabel.setText(&quot;position: &quot; + position);</span>
+<span class="pc bpc" id="L132" title="1 of 2 branches missed.">				if(i == 0){</span>
+<span class="fc" id="L133">					JLabel tempLabel = (JLabel) view.getGridPanels()[view.getFloorsNumber() - position][2].getComponent(0); </span>
+<span class="fc" id="L134">					emptyGridLabels(2);</span>
+<span class="fc" id="L135">					tempLabel.setText(&quot;----&quot;);</span>
+				}
+				
+<span class="pc bpc" id="L138" title="1 of 2 branches missed.">				if(i == 1){</span>
+<span class="nc" id="L139">					JLabel tempLabel1 = (JLabel) view.getGridPanels()[view.getFloorsNumber() - position][3].getComponent(0); </span>
+<span class="nc" id="L140">					emptyGridLabels(3);</span>
+<span class="nc" id="L141">					tempLabel1.setText(&quot;----&quot;);</span>
+				}
+			
+				
+<span class="fc" id="L145">				JLabel directionLabel = (JLabel) view.getStatusPanelSubPanels().get(i).getComponent(1);</span>
+<span class="fc" id="L146">				directionLabel.setText(&quot;direction: &quot; + elevatorDirectionToString(elevData.getElevatorBoxesList().get(i).getElevatorDir()));</span>
+				
+<span class="fc" id="L148">				JLabel loadLabel = (JLabel) view.getStatusPanelSubPanels().get(i).getComponent(2);</span>
+<span class="fc" id="L149">				loadLabel.setText(&quot;load: &quot; + elevData.getElevatorBoxesList().get(i).getElevatorWeight());</span>
+				
+<span class="fc" id="L151">				JLabel speedLabel = (JLabel) view.getStatusPanelSubPanels().get(i).getComponent(3);</span>
+<span class="fc" id="L152">				speedLabel.setText(&quot;speed: &quot; + elevData.getElevatorBoxesList().get(i).getElevatorDir());</span>
+				
+<span class="fc" id="L154">				JLabel doorLabel = (JLabel) view.getStatusPanelSubPanels().get(i).getComponent(4);</span>
+<span class="fc" id="L155">				doorLabel.setText(&quot;doors: &quot; + elevatorDoorToString(elevData.getElevatorBoxesList().get(i).getElevatorDoorStatus()));</span>
+				
+			}
+			
+		}
+<span class="fc" id="L160">	}	</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>ElevatorTests (2) (2015.01.15 14:01:57)</div></body></html>

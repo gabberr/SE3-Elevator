@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>ElevatorAdapterTest.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">ElevatorTests (2) (2015.01.15 14:01:57)</a> &gt; <a href="../../index.html" class="el_group">Elevator</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">at.fhhagenberg.sqe.elevator.test</a> &gt; <span class="el_source">ElevatorAdapterTest.java</span></div><h1>ElevatorAdapterTest.java</h1><pre class="source lang-java linenums">package at.fhhagenberg.sqe.elevator.test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import sqelevator.IElevator;
+import at.fhhagenberg.sqe.elevator.model.Elevator;
+
+<span class="nc" id="L19">public class ElevatorAdapterTest {</span>
+<span class="nc" id="L20">    private static Elevator m_adapter = null;</span>
+<span class="nc" id="L21">    private ElevatorMock m_mock = null;</span>
+
+    /**
+     * @throws java.lang.Exception
+     */
+    @BeforeClass
+    public static void setUpBeforeClass() throws Exception {
+<span class="nc" id="L28">        m_adapter = new Elevator();</span>
+<span class="nc" id="L29">    }</span>
+
+    /**
+     * @throws java.lang.Exception
+     */
+    @AfterClass
+    public static void tearDownAfterClass() throws Exception {
+<span class="nc" id="L36">        m_adapter = null;</span>
+<span class="nc" id="L37">    }</span>
+
+    /**
+     * @throws java.lang.Exception
+     */
+    @Before
+    public void setUp() throws Exception {
+<span class="nc" id="L44">        m_mock = new ElevatorMock();</span>
+       // m_adapter.setIElevatorRef(m_mock);
+<span class="nc" id="L46">    }</span>
+
+    /**
+     * @throws java.lang.Exception
+     */
+    @After
+    public void tearDown() throws Exception {
+<span class="nc" id="L53">        m_mock = null;</span>
+<span class="nc" id="L54">    }</span>
+
+    @Test
+    public void testGetCommittedDirection(){
+<span class="nc" id="L58">        assertEquals(IElevator.ELEVATOR_DIRECTION_UP, m_adapter.getCommittedDirection(1));</span>
+<span class="nc" id="L59">		assertEquals(IElevator.ELEVATOR_DIRECTION_UNCOMMITTED, m_adapter.getCommittedDirection(2));</span>
+<span class="nc" id="L60">		assertEquals(IElevator.ELEVATOR_DIRECTION_UNCOMMITTED, m_adapter.getCommittedDirection(3));</span>
+<span class="nc" id="L61">		assertEquals(IElevator.ELEVATOR_DIRECTION_DOWN, m_adapter.getCommittedDirection(4));</span>
+
+<span class="nc" id="L63">        m_adapter.getCommittedDirection(5);</span>
+		
+<span class="nc" id="L65">    }</span>
+
+    @Test
+    public void testGetElevatorDoorStatus(){
+<span class="nc" id="L69">    	assertEquals(IElevator.ELEVATOR_DOORS_OPEN, m_adapter.getElevatorDoorStatus(1));</span>
+<span class="nc" id="L70">		assertEquals(IElevator.ELEVATOR_DOORS_OPENING, m_adapter.getElevatorDoorStatus(2));</span>
+<span class="nc" id="L71">		assertEquals(IElevator.ELEVATOR_DOORS_CLOSED, m_adapter.getElevatorDoorStatus(3));</span>
+<span class="nc" id="L72">		assertEquals(IElevator.ELEVATOR_DOORS_CLOSING, m_adapter.getElevatorDoorStatus(4));</span>
+<span class="nc" id="L73">    	m_adapter.getElevatorDoorStatus(5);</span>
+		
+<span class="nc" id="L75">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>ElevatorTests (2) (2015.01.15 14:01:57)</div></body></html>
