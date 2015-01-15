@@ -3,17 +3,15 @@ package at.fhhagenberg.sqe.elevator.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.StringTokenizer;
 
 import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import sqelevator.IElevator;
-
-import java.util.ArrayList;
-
 import at.fhhagenberg.sqe.elevator.model.Elevator;
 import at.fhhagenberg.sqe.elevator.model.ElevatorCart;
 import at.fhhagenberg.sqe.elevator.model.ElevatorData;
@@ -121,6 +119,18 @@ public class ViewController implements Observer{
 	public void update(Observable o, Object arg) {
 		if(o instanceof ElevatorObservable){
 			ElevatorData elevData = (ElevatorData) arg;
+			
+			ArrayList upReversedList = elevData.getFloorButtonsUp();
+			ArrayList downReversedList = elevData.getFloorButtonsDown();
+			
+			Collections.reverse(upReversedList);
+			Collections.reverse(downReversedList);
+			
+			for(int i = 0; i < view.getFloorsNumber(); i++){
+				JLabel tempLabel = (JLabel) view.getGridPanels()[i+1][1].getComponent(0);
+				tempLabel.setText("<html>U: "+ upReversedList.get(i) + "<br/>D: " + downReversedList.get(i) + "</html>");
+			}
+			
 			for(int i = 0; i < elevData.getElevatorBoxesList().size(); i++){
 			
 				
