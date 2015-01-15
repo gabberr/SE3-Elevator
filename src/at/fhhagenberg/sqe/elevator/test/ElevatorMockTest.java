@@ -16,7 +16,7 @@ import org.junit.Test;
 import sqelevator.IElevator;
 import at.fhhagenberg.sqe.elevator.model.Elevator;
 
-public class ElevatorAdapterTest {
+public class ElevatorMockTest {
     private static Elevator m_adapter = null;
     private ElevatorMock m_mock = null;
 

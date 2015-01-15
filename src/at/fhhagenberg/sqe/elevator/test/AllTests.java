@@ -8,9 +8,10 @@ import org.junit.runners.Suite.SuiteClasses;
 
 
 @RunWith(Suite.class)
-@SuiteClasses({ ManualTest.class,ElevatorAdapterTest.class})
+@SuiteClasses({ ManualTest.class,ElevatorMockTest.class,ElevatorTests.class})
 
 public class AllTests {
+	
 
 }
 
