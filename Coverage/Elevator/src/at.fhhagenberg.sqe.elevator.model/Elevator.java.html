@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>Elevator.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">ElevatorTests (2) (2015.01.15 14:01:57)</a> &gt; <a href="../../index.html" class="el_group">Elevator</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">at.fhhagenberg.sqe.elevator.model</a> &gt; <span class="el_source">Elevator.java</span></div><h1>Elevator.java</h1><pre class="source lang-java linenums"> package at.fhhagenberg.sqe.elevator.model;
+
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+
+import at.fhhagenberg.sqe.elevator.model.floor.Floor;
+import sqelevator.IElevator;
+
+public class Elevator extends ElevatorAdapter {
+	
+<span class="fc" id="L11">	ArrayList&lt;ElevatorCart&gt; carts = null;</span>
+	
+
+<span class="fc" id="L14">	ArrayList&lt;Floor&gt; floors = null;</span>
+
+<span class="fc" id="L16">	public Elevator(ArrayList&lt;ElevatorCart&gt; _carts, ArrayList&lt;Floor&gt; _floors) {</span>
+<span class="fc" id="L17">		carts = new ArrayList&lt;ElevatorCart&gt;();</span>
+<span class="fc" id="L18">		floors = new ArrayList&lt;Floor&gt;();</span>
+<span class="fc" id="L19">		carts=_carts;</span>
+<span class="fc" id="L20">		floors = _floors;</span>
+<span class="fc" id="L21">	}</span>
+<span class="fc" id="L22">	public Elevator()</span>
+	{
+<span class="fc" id="L24">		carts = new ArrayList&lt;ElevatorCart&gt;();</span>
+<span class="fc" id="L25">		floors = new ArrayList&lt;Floor&gt;();</span>
+<span class="fc" id="L26">	}</span>
+	@Override
+	public int getCommittedDirection(int elevatorNumber) {
+<span class="nc" id="L29">		return carts.get(elevatorNumber).getCommitedDirection();</span>
+	}
+
+	@Override
+	public boolean getElevatorButton(int elevatorNumber, int floor) {
+		// TODO Auto-generated method stub
+<span class="nc" id="L35">		return carts.get(elevatorNumber).getElevatorButton(floor);</span>
+	}
+
+	@Override
+	public int getElevatorDoorStatus(int elevatorNumber) {
+		// TODO Auto-generated method stub
+<span class="nc" id="L41">		return carts.get(elevatorNumber).getDoorStatus();</span>
+	}
+
+	@Override
+	public int getElevatorFloor(int elevatorNumber) {
+<span class="nc" id="L46">		return carts.get(elevatorNumber).getCurrentFloor();</span>
+	}
+
+	@Override
+	public int getElevatorNum() {
+<span class="fc" id="L51">		return 2;</span>
+	}
+
+	@Override
+	public int getElevatorPosition(int elevatorNumber) {
+		// position same as floor number
+<span class="nc" id="L57">		return carts.get(elevatorNumber).getCurrentFloor();</span>
+	}
+
+	@Override
+	public int getFloorHeight() {
+<span class="fc" id="L62">		return 1;</span>
+	}
+
+	@Override
+	public int getFloorNum() {
+<span class="fc" id="L67">		return 10;</span>
+	}
+
+	@Override
+	public int getTarget(int elevatorNumber) {
+<span class="nc" id="L72">		return carts.get(elevatorNumber).getNextDestination();</span>
+	}
+
+	@Override
+	public void setCommittedDirection(int elevatorNumber, int direction) {
+<span class="nc" id="L77">		carts.get(elevatorNumber).setCommitedDirection(direction);</span>
+<span class="nc" id="L78">	}</span>
+
+	@Override
+	public void setTarget(int elevatorNumber, int target) {
+<span class="nc" id="L82">		carts.get(elevatorNumber).addDestination(target);</span>
+<span class="nc" id="L83">	}</span>
+
+	/**
+	 * @return the carts
+	 */
+	public ArrayList&lt;ElevatorCart&gt; getCarts() {
+<span class="fc" id="L89">		return this.carts;</span>
+	}
+	/**
+	 * @param carts the carts to set
+	 */
+	public void setCarts(ArrayList&lt;ElevatorCart&gt; carts) {
+<span class="fc" id="L95">		this.carts = carts;</span>
+<span class="fc" id="L96">	}</span>
+	/**
+	 * @return the floors
+	 */
+	public ArrayList&lt;Floor&gt; getFloors() {
+<span class="fc" id="L101">		return this.floors;</span>
+	}
+	/**
+	 * @param floors the floors to set
+	 */
+	public void setFloors(ArrayList&lt;Floor&gt; floors) {
+<span class="fc" id="L107">		this.floors = floors;</span>
+<span class="fc" id="L108">	}</span>
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>ElevatorTests (2) (2015.01.15 14:01:57)</div></body></html>

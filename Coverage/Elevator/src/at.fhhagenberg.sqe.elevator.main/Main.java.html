@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>Main.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">ElevatorTests (2) (2015.01.15 14:01:57)</a> &gt; <a href="../../index.html" class="el_group">Elevator</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">at.fhhagenberg.sqe.elevator.main</a> &gt; <span class="el_source">Main.java</span></div><h1>Main.java</h1><pre class="source lang-java linenums"><span class="fc" id="L1">package at.fhhagenberg.sqe.elevator.main;</span>
+
+
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import sqelevator.IElevator;
+import at.fhhagenberg.sqe.elevator.controller.ViewController;
+import at.fhhagenberg.sqe.elevator.model.ElevatorObservable;
+import at.fhhagenberg.sqe.elevator.view.View;
+//comment
+
+public class Main {
+	
+	private IElevator controller;
+	ElevatorObservable client;
+	View view;
+	ViewController viewCon;
+	
+<span class="fc" id="L25">	public Main(){</span>
+
+<span class="fc" id="L27">	}</span>
+	
+	public void connect() throws MalformedURLException, RemoteException, NotBoundException {
+<span class="fc" id="L30">		controller = (IElevator) Naming.lookup(&quot;rmi://localhost/ElevatorSim&quot;);</span>
+<span class="fc" id="L31">		client = new ElevatorObservable(controller);</span>
+		
+<span class="fc" id="L33">	}</span>
+	
+	public void start() {
+<span class="fc" id="L36">		view = new View();</span>
+<span class="fc" id="L37">		viewCon= new ViewController(view, controller);</span>
+		
+<span class="fc" id="L39">		client.addObserver(viewCon);</span>
+		
+<span class="fc" id="L41">		Timer timer = new Timer();</span>
+<span class="fc" id="L42">		timer.scheduleAtFixedRate(new TimerTask() {</span>
+			@Override
+			public void run(){
+				try {
+<span class="fc" id="L46">					client.readValues();</span>
+<span class="pc" id="L47">				} catch (RemoteException e) {</span>
+<span class="nc" id="L48">					e.printStackTrace();</span>
+				}
+<span class="fc" id="L50">			}</span>
+			
+<span class="fc" id="L52">		}, new Date(), 100);</span>
+		
+		
+<span class="fc" id="L55">	}</span>
+	
+	
+	public static void main(String[] args) {
+
+<span class="nc" id="L60">		Main main = new Main();</span>
+		try {
+<span class="nc" id="L62">			main.connect();</span>
+<span class="nc" id="L63">			main.start();</span>
+<span class="nc" id="L64">		} catch (MalformedURLException | RemoteException | NotBoundException e) {</span>
+			// TODO Auto-generated catch block
+<span class="nc" id="L66">			e.printStackTrace();</span>
+		}
+<span class="nc" id="L68">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>ElevatorTests (2) (2015.01.15 14:01:57)</div></body></html>

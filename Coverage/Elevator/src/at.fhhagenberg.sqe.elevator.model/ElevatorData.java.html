@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>ElevatorData.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">ElevatorTests (2) (2015.01.15 14:01:57)</a> &gt; <a href="../../index.html" class="el_group">Elevator</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">at.fhhagenberg.sqe.elevator.model</a> &gt; <span class="el_source">ElevatorData.java</span></div><h1>ElevatorData.java</h1><pre class="source lang-java linenums">package at.fhhagenberg.sqe.elevator.model;
+
+import java.util.ArrayList;
+
+public class ElevatorData {
+	
+
+<span class="fc" id="L8">	private ArrayList&lt;ElevatorBox&gt; elevatorBoxesList = new ArrayList&lt;ElevatorData.ElevatorBox&gt;();</span>
+<span class="fc" id="L9">	private ArrayList &lt;Boolean&gt; floorButtonsUp= null;</span>
+<span class="fc" id="L10">	private ArrayList &lt;Boolean&gt; floorButtonsDown = null;</span>
+	
+<span class="fc" id="L12">	public ElevatorData(){</span>
+		
+<span class="fc" id="L14">	}</span>
+	
+	public ArrayList&lt;ElevatorBox&gt; getElevatorBoxesList(){
+<span class="fc" id="L17">		return this.elevatorBoxesList;</span>
+	}
+	
+	public void addElevatorBox(int elevatorDir, int elevatorAccel,
+			int elevatorDoorStatus, int elevatorClosestFloor, int elevatorPosition, int elevatorSpeed,
+			int elevatorWeight, int elevatorCapacity, int targetFloor,
+			ArrayList&lt;Boolean&gt; elevatorPressedButtons){
+		
+<span class="fc" id="L25">		elevatorBoxesList.add(new ElevatorBox(elevatorDir, elevatorAccel,</span>
+<span class="fc" id="L26">			elevatorDoorStatus, elevatorClosestFloor, elevatorPosition, elevatorSpeed,</span>
+<span class="fc" id="L27">			elevatorWeight, elevatorCapacity, targetFloor,</span>
+<span class="fc" id="L28">			elevatorPressedButtons));</span>
+<span class="fc" id="L29">	}</span>
+	
+	public void setFloorButtonsUp(ArrayList&lt;Boolean&gt; fbu){
+<span class="fc" id="L32">		floorButtonsUp = fbu;</span>
+<span class="fc" id="L33">	}</span>
+	
+	public void setFloorButtonsDown(ArrayList&lt;Boolean&gt; fbd){
+<span class="fc" id="L36">		floorButtonsDown = fbd;</span>
+<span class="fc" id="L37">	}</span>
+	public ArrayList&lt;Boolean&gt; getFloorButtonsUp() {
+<span class="fc" id="L39">		return floorButtonsUp;</span>
+	}
+
+	public ArrayList&lt;Boolean&gt; getFloorButtonsDown() {
+<span class="fc" id="L43">		return floorButtonsDown;</span>
+	}
+
+	public class ElevatorBox{
+<span class="pc" id="L47">		private int elevatorDir = 0;</span>
+<span class="pc" id="L48">		private int elevatorAccel = 0;</span>
+<span class="pc" id="L49">		private int elevatorDoorStatus= 0;</span>
+<span class="pc" id="L50">		private int elevatorClosestFloor = 0;</span>
+<span class="pc" id="L51">		private int elevatorPosition = 0;</span>
+<span class="pc" id="L52">		private int elevatorSpeed = 0;</span>
+<span class="pc" id="L53">		private int elevatorWeight = 0;</span>
+<span class="pc" id="L54">		private int elevatorCapacity = 	0;</span>
+<span class="pc" id="L55">		private int targetFloor = 0;</span>
+<span class="pc" id="L56">		private ArrayList &lt;Boolean&gt; elevatorPressedButtons = null;	</span>
+		
+		
+<span class="nc" id="L59">		private ElevatorBox(){</span>
+<span class="nc" id="L60">			elevatorPressedButtons = new ArrayList&lt;Boolean&gt;();</span>
+<span class="nc" id="L61">		}</span>
+
+		public ElevatorBox(int elevatorDir, int elevatorAccel,
+				int elevatorDoorStatus, int elevatorClosestFloor, int elevatorPosition, int elevatorSpeed,
+				int elevatorWeight, int elevatorCapacity, int targetFloor,
+<span class="fc" id="L66">				ArrayList&lt;Boolean&gt; elevatorPressedButtons) {</span>
+<span class="fc" id="L67">			super();</span>
+<span class="fc" id="L68">			this.elevatorDir = elevatorDir;</span>
+<span class="fc" id="L69">			this.elevatorAccel = elevatorAccel;</span>
+<span class="fc" id="L70">			this.elevatorDoorStatus = elevatorDoorStatus;</span>
+<span class="fc" id="L71">			this.elevatorClosestFloor = elevatorClosestFloor;</span>
+<span class="fc" id="L72">			this.elevatorPosition = elevatorPosition;</span>
+<span class="fc" id="L73">			this.elevatorSpeed = elevatorSpeed;</span>
+<span class="fc" id="L74">			this.elevatorWeight = elevatorWeight;</span>
+<span class="fc" id="L75">			this.elevatorCapacity = elevatorCapacity;</span>
+<span class="fc" id="L76">			this.targetFloor = targetFloor;</span>
+<span class="fc" id="L77">			this.elevatorPressedButtons = elevatorPressedButtons;</span>
+<span class="fc" id="L78">		}</span>
+
+		public int getElevatorDir() {
+<span class="fc" id="L81">			return elevatorDir;</span>
+		}
+
+		public void setElevatorDir(int elevatorDir) {
+<span class="fc" id="L85">			this.elevatorDir = elevatorDir;</span>
+<span class="fc" id="L86">		}</span>
+
+		public int getElevatorAccel() {
+<span class="fc" id="L89">			return elevatorAccel;</span>
+		}
+
+		public void setElevatorAccel(int elevatorAccel) {
+<span class="fc" id="L93">			this.elevatorAccel = elevatorAccel;</span>
+<span class="fc" id="L94">		}</span>
+
+		public int getElevatorDoorStatus() {
+<span class="fc" id="L97">			return elevatorDoorStatus;</span>
+		}
+
+		public void setElevatorDoorStatus(int elevatorDoorStatus) {
+<span class="fc" id="L101">			this.elevatorDoorStatus = elevatorDoorStatus;</span>
+<span class="fc" id="L102">		}</span>
+
+		public int getElevatorClosestFloor() {
+<span class="fc" id="L105">			return elevatorClosestFloor;</span>
+		}
+
+		public void setElevatorClosestFloor(int elevatorClosestFloor) {
+<span class="fc" id="L109">			this.elevatorClosestFloor = elevatorClosestFloor;</span>
+<span class="fc" id="L110">		}</span>
+
+		public int getElevatorPosition() {
+<span class="fc" id="L113">			return elevatorPosition;</span>
+		}
+
+		public void setElevatorPosition(int elevatorPosition) {
+<span class="fc" id="L117">			this.elevatorPosition = elevatorPosition;</span>
+<span class="fc" id="L118">		}</span>
+
+		public int getElevatorSpeed() {
+<span class="fc" id="L121">			return elevatorSpeed;</span>
+		}
+
+		public void setElevatorSpeed(int elevatorSpeed) {
+<span class="fc" id="L125">			this.elevatorSpeed = elevatorSpeed;</span>
+<span class="fc" id="L126">		}</span>
+
+		public int getElevatorWeight() {
+<span class="fc" id="L129">			return elevatorWeight;</span>
+		}
+
+		public void setElevatorWeight(int elevatorWeight) {
+<span class="fc" id="L133">			this.elevatorWeight = elevatorWeight;</span>
+<span class="fc" id="L134">		}</span>
+
+		public int getElevatorCapacity() {
+<span class="fc" id="L137">			return elevatorCapacity;</span>
+		}
+
+		public void setElevatorCapacity(int elevatorCapacity) {
+<span class="fc" id="L141">			this.elevatorCapacity = elevatorCapacity;</span>
+<span class="fc" id="L142">		}</span>
+
+		public int getTargetFloor() {
+<span class="fc" id="L145">			return targetFloor;</span>
+		}
+
+		public void setTargetFloor(int targetFloor) {
+<span class="fc" id="L149">			this.targetFloor = targetFloor;</span>
+<span class="fc" id="L150">		}</span>
+
+		public ArrayList&lt;Boolean&gt; getElevatorPressedButtons() {
+<span class="fc" id="L153">			return elevatorPressedButtons;</span>
+		}
+		
+		public void addElevatorPressedButtons(boolean b){
+<span class="fc" id="L157">			elevatorPressedButtons.add(b);</span>
+<span class="fc" id="L158">		}</span>
+
+		public void setElevatorPressedButtons(ArrayList&lt;Boolean&gt; elevatorPressedButtons) {
+<span class="fc" id="L161">			this.elevatorPressedButtons = elevatorPressedButtons;</span>
+<span class="fc" id="L162">		}</span>
+		
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>ElevatorTests (2) (2015.01.15 14:01:57)</div></body></html>

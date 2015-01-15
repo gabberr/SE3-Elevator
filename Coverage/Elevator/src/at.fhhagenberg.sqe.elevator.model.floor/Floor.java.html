@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>Floor.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">ElevatorTests (2) (2015.01.15 14:01:57)</a> &gt; <a href="../../index.html" class="el_group">Elevator</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">at.fhhagenberg.sqe.elevator.model.floor</a> &gt; <span class="el_source">Floor.java</span></div><h1>Floor.java</h1><pre class="source lang-java linenums">package at.fhhagenberg.sqe.elevator.model.floor;
+
+<span class="fc" id="L3">public class Floor implements FloorIF {</span>
+	
+	private int floorId;
+<span class="fc" id="L6">	private boolean floorButtonUpPressed = false;</span>
+<span class="fc" id="L7">	private boolean floorButtonDownPressed = false;</span>
+	
+	/**
+	 * @return the floorId
+	 */
+	public int getFloorId() {
+<span class="fc" id="L13">		return this.floorId;</span>
+	}
+	/**
+	 * @param floorId the floorId to set
+	 */
+	public void setFloorId(int floorId) {
+<span class="fc" id="L19">		this.floorId = floorId;</span>
+<span class="fc" id="L20">	}</span>
+
+	/**
+	 * @param floorButtonUpPressed the floorButtonUpPressed to set
+	 */
+	public void setFloorButtonUpPressed(boolean floorButtonUpPressed) {
+<span class="fc" id="L26">		this.floorButtonUpPressed = floorButtonUpPressed;</span>
+<span class="fc" id="L27">	}</span>
+	
+	/**
+	 * @param floorButtonDownPressed the floorButtonDownPressed to set
+	 */
+	public void setFloorButtonDownPressed(boolean floorButtonDownPressed) {
+<span class="fc" id="L33">		this.floorButtonDownPressed = floorButtonDownPressed;</span>
+<span class="fc" id="L34">	}</span>
+	@Override
+	public boolean isFloorButtonUpPressed() {
+<span class="fc" id="L37">		return false;</span>
+	}
+	@Override
+	public boolean isFloorButtonDownPressed() {
+<span class="fc" id="L41">		return false;</span>
+	}
+	
+	
+	
+	
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>ElevatorTests (2) (2015.01.15 14:01:57)</div></body></html>
