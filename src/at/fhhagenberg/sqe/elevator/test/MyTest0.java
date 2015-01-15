@@ -4973,19 +4973,6 @@ public class MyTest0 extends TestCase {
 
   }
 
-  public void test156() throws Throwable {
-
-    if (debug) System.out.printf("%nMyTest0.test156");
-
-
-    at.fhhagenberg.sqe.elevator.main.Main var0 = new at.fhhagenberg.sqe.elevator.main.Main();
-    var0.connect();
-    var0.connect();
-    var0.start();
-    var0.start();
-    var0.connect();
-
-  }
 
   public void test157() throws Throwable {
 
@@ -6029,17 +6016,6 @@ public class MyTest0 extends TestCase {
 
   }
 
-  public void test183() throws Throwable {
-
-    if (debug) System.out.printf("%nMyTest0.test183");
-
-
-    at.fhhagenberg.sqe.elevator.main.Main var0 = new at.fhhagenberg.sqe.elevator.main.Main();
-    var0.connect();
-    var0.start();
-    var0.start();
-
-  }
 
   public void test184() throws Throwable {
 
@@ -11624,20 +11600,6 @@ public class MyTest0 extends TestCase {
 
   }
 
-  public void test327() throws Throwable {
-
-    if (debug) System.out.printf("%nMyTest0.test327");
-
-
-    at.fhhagenberg.sqe.elevator.main.Main var0 = new at.fhhagenberg.sqe.elevator.main.Main();
-    var0.connect();
-    var0.connect();
-    var0.connect();
-    var0.start();
-    var0.connect();
-    var0.start();
-
-  }
 
   public void test328() throws Throwable {
 
@@ -14371,19 +14333,7 @@ public class MyTest0 extends TestCase {
 
   }
 
-  public void test393() throws Throwable {
 
-    if (debug) System.out.printf("%nMyTest0.test393");
-
-
-    at.fhhagenberg.sqe.elevator.main.Main var0 = new at.fhhagenberg.sqe.elevator.main.Main();
-    var0.connect();
-    var0.connect();
-    var0.start();
-    var0.start();
-    var0.start();
-
-  }
 
   public void test394() throws Throwable {
 

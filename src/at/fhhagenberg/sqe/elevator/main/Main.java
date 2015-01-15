@@ -76,10 +76,7 @@ public class Main {
 			main.connect("rmi://localhost/ElevatorSim");
 			main.start();
 		} catch (MalformedURLException e) {
-			Frame dialogFrame = new Frame();
-			dialogFrame.setVisible(true);
-			JOptionPane.showMessageDialog(dialogFrame,
-				    "Malformed URL Exception");
+			e.printStackTrace();
 		}
 		catch ( RemoteException e) {
 			e.printStackTrace();
