@@ -154,7 +154,6 @@ public class ViewController implements Observer{
 				JLabel doorLabel = (JLabel) view.getStatusPanelSubPanels().get(i).getComponent(4);
 				doorLabel.setText("doors: " + elevatorDoorToString(elevData.getElevatorBoxesList().get(i).getElevatorDoorStatus()));
 				
-				
 			}
 			
 		}
