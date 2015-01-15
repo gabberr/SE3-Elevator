@@ -48,11 +48,13 @@ public class ElevatorObservable extends Observable {
 			Integer accl = controller.getElevatorAccel(i);
 			Integer doorStatus = controller
 					.getElevatorDoorStatus(elevatorNumber);
-
+			
+			
 			Integer closestFloor = controller.getElevatorFloor(i);
 			Integer capacity = controller.getElevatorCapacity(i);
 			Integer elevatorWeight = controller.getElevatorWeight(i);
 
+			
 			ArrayList<Boolean> elevatorPressedButtons = new ArrayList<Boolean>();
 
 			for (int j = 0; j < numberOfFloors; j++) {
