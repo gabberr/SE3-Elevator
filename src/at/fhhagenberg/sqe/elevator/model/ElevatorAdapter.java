@@ -4,6 +4,12 @@ import java.rmi.RemoteException;
 
 import sqelevator.IElevator;
 
+/**
+ *  Empty adapter class
+ * @author Gaber Setina, S1310455016
+ *
+ */
+
 public class ElevatorAdapter implements IElevator {
 
 	@Override

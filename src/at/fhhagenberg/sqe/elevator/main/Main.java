@@ -18,6 +18,12 @@ import at.fhhagenberg.sqe.elevator.model.ElevatorObservable;
 import at.fhhagenberg.sqe.elevator.view.View;
 //comment
 
+/**
+ * Main class that start the views and connection
+ * @author Gaber Setina, S1310455016
+ *
+ */
+
 public class Main {
 	
 	private IElevator elevatorInterface;

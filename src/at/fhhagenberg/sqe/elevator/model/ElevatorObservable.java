@@ -5,6 +5,12 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 import sqelevator.IElevator;
+/**
+ * Elevator observable class
+ * Read the values from the IElevator interface
+ * @author Gaber Setina, S1310455016
+ *
+ */
 
 public class ElevatorObservable extends Observable {
 
