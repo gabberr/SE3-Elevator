@@ -1,6 +1,7 @@
 package at.fhhagenberg.sqe.elevator.main;
 
 
+import java.awt.Frame;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -8,6 +9,8 @@ import java.rmi.RemoteException;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import javax.swing.JOptionPane;
 
 import sqelevator.IElevator;
 import at.fhhagenberg.sqe.elevator.controller.ViewController;
@@ -17,26 +20,34 @@ import at.fhhagenberg.sqe.elevator.view.View;
 
 public class Main {
 	
-	private IElevator controller;
+	private IElevator elevatorInterface;
 	ElevatorObservable client;
-	View view;
-	ViewController viewCon;
+	View elevatorView;
+	ViewController elevatorViewController;
 	
 	public Main(){
 
 	}
-	
-	public void connect() throws MalformedURLException, RemoteException, NotBoundException {
-		controller = (IElevator) Naming.lookup("rmi://localhost/ElevatorSim");
-		client = new ElevatorObservable(controller);
+	/**
+	 * Start the connection to rmi URL
+	 * @throws MalformedURLException
+	 * @throws RemoteException
+	 * @throws NotBoundException
+	 */
+	public void connect(String url) throws MalformedURLException, RemoteException, NotBoundException {
+		elevatorInterface = (IElevator) Naming.lookup(url);
+		client = new ElevatorObservable(elevatorInterface);
 		
 	}
 	
+	/**
+	 * Start reading the values from the IElevator interface, loads up the gui
+	 */
 	public void start() {
-		view = new View();
-		viewCon= new ViewController(view, controller);
+		elevatorView = new View();
+		elevatorViewController= new ViewController(elevatorView, elevatorInterface);
 		
-		client.addObserver(viewCon);
+		client.addObserver(elevatorViewController);
 		
 		Timer timer = new Timer();
 		timer.scheduleAtFixedRate(new TimerTask() {
@@ -44,8 +55,11 @@ public class Main {
 			public void run(){
 				try {
 					client.readValues();
+//					ele
+					
 				} catch (RemoteException e) {
 					e.printStackTrace();
+					
 				}
 			}
 			
@@ -59,12 +73,22 @@ public class Main {
 
 		Main main = new Main();
 		try {
-			main.connect();
+			main.connect("rmi://localhost/ElevatorSim");
 			main.start();
-		} catch (MalformedURLException | RemoteException | NotBoundException e) {
-			// TODO Auto-generated catch block
+		} catch (MalformedURLException e) {
+			Frame dialogFrame = new Frame();
+			dialogFrame.setVisible(true);
+			JOptionPane.showMessageDialog(dialogFrame,
+				    "Malformed URL Exception");
+		}
+		catch ( RemoteException e) {
 			e.printStackTrace();
 		}
+		catch (NotBoundException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
 	}
 
 }
