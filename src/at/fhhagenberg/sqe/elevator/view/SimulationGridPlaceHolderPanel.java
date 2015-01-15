@@ -39,8 +39,11 @@ public class SimulationGridPlaceHolderPanel extends JPanel {
 			if(colNum == 0){
 				JLabel label = new JLabel("floor#");
 				this.add(label);
-			}else if(colNum > 0){
-				JLabel label = new JLabel("Elev"+colNum);
+			}else if(colNum == 1){
+				JLabel label = new JLabel("Dir Btns");
+				this.add(label);
+			}else if(colNum > 1){
+				JLabel label = new JLabel("Elev" + (colNum-1));
 				this.add(label);
 			}
 		}else if(rowNum > 0){
@@ -48,7 +51,11 @@ public class SimulationGridPlaceHolderPanel extends JPanel {
 				setBorder(BorderFactory.createLineBorder(Color.BLACK));
 				JLabel label = new JLabel(""+ (floorNum - rowNum + 1));
 				this.add(label);
-			}else if( colNum > 0 ){
+			}else if(colNum == 1){
+				setBorder(BorderFactory.createLineBorder(Color.BLACK));
+				JLabel label = new JLabel("U: D: ");
+				this.add(label);
+			}else if( colNum > 1 ){
 				setBorder(BorderFactory.createLineBorder(Color.lightGray));
 				JLabel label = new JLabel(); //new JLabel("(" + rowNum + ", " + colNum + ")"); 
 				this.add(label);

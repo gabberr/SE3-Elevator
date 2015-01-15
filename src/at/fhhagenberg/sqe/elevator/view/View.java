@@ -47,7 +47,7 @@ public class View {
 		mainPanel.setLayout(new GridLayout(1, 3));
 		
 		simulationPanel = new JPanel();
-		simulationPanel.setLayout(new GridLayout((floorNum+2), (elevatorNum+1)));
+		simulationPanel.setLayout(new GridLayout((floorNum+1), (elevatorNum+2)));
 		setUpSimulationPanel();
 		
 		statusPanel = new JPanel();
@@ -72,14 +72,17 @@ public class View {
 	}
 	
 	private void setUpSimulationPanel(){
-		gridPanels = new JPanel[floorNum+1][elevatorNum+1];
+		gridPanels = new JPanel[floorNum+1][elevatorNum+2];
 		for(int i = 0; i < (floorNum+1); i++){
-			for(int j = 0; j < (elevatorNum+1); j++){
+			for(int j = 0; j < (elevatorNum+2); j++){
 				if(i == 0){
 					if(j == 0){
 						gridPanels[i][j] = new SimulationGridPlaceHolderPanel(i, j, "floorTitle", floorNum, elevatorNum);
 						simulationPanel.add(gridPanels[i][j]);
-					}else if(j > 0){
+					}else if(j == 1){
+						gridPanels[i][j] = new SimulationGridPlaceHolderPanel(i, j, "dirBtns", floorNum, elevatorNum);
+						simulationPanel.add(gridPanels[i][j]);
+					}else if(j > 1){
 						gridPanels[i][j] = new SimulationGridPlaceHolderPanel(i, j, "elevatorTitle", floorNum, elevatorNum);
 						simulationPanel.add(gridPanels[i][j]);
 					}
@@ -87,7 +90,10 @@ public class View {
 					if( j == 0 ){
 						gridPanels[i][j] = new SimulationGridPlaceHolderPanel(i, j, "floorNum", floorNum, elevatorNum);
 						simulationPanel.add(gridPanels[i][j]);
-					}else if( j > 0 ){
+					}else if(j == 1){
+						gridPanels[i][j] = new SimulationGridPlaceHolderPanel(i, j, "dirBtns", floorNum, elevatorNum);
+						simulationPanel.add(gridPanels[i][j]);
+					}else if( j > 1 ){
 						gridPanels[i][j] = new SimulationGridPlaceHolderPanel(i, j, "elevatorPos", floorNum, elevatorNum);
 						simulationPanel.add(gridPanels[i][j]);
 					}

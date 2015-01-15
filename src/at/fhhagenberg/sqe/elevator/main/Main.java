@@ -9,12 +9,11 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import sqelevator.ElevatorExample;
 import sqelevator.IElevator;
 import at.fhhagenberg.sqe.elevator.controller.ViewController;
 import at.fhhagenberg.sqe.elevator.model.ElevatorObservable;
-//comment
 import at.fhhagenberg.sqe.elevator.view.View;
+//comment
 
 public class Main {
 	
@@ -66,10 +65,6 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-			
-		
-
 	}
 
 }

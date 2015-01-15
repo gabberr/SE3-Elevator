@@ -130,14 +130,14 @@ public class ViewController implements Observer{
 				
 				positionLabel.setText("position: " + position);
 				if(i == 0){
-					JLabel tempLabel = (JLabel) view.getGridPanels()[view.getFloorsNumber() - position][1].getComponent(0); 
-					emptyGridLabels(1);
+					JLabel tempLabel = (JLabel) view.getGridPanels()[view.getFloorsNumber() - position][2].getComponent(0); 
+					emptyGridLabels(2);
 					tempLabel.setText("----");
 				}
 				
 				if(i == 1){
-					JLabel tempLabel1 = (JLabel) view.getGridPanels()[view.getFloorsNumber() - position][2].getComponent(0); 
-					emptyGridLabels(2);
+					JLabel tempLabel1 = (JLabel) view.getGridPanels()[view.getFloorsNumber() - position][3].getComponent(0); 
+					emptyGridLabels(3);
 					tempLabel1.setText("----");
 				}
 			
