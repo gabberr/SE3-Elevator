@@ -6,7 +6,6 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.rmi.RemoteException;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -43,7 +42,7 @@ public class ElevatorAdapterTest {
     @Before
     public void setUp() throws Exception {
         m_mock = new ElevatorMock();
-        m_adapter.setIElevatorRef(m_mock);
+       // m_adapter.setIElevatorRef(m_mock);
     }
 
     /**

@@ -32,7 +32,7 @@ public class ElevatorCart implements ElevatorCartIF {
 	}
 
 	@Override
-	public void addDestinatoin(Integer destination) {
+	public void addDestination(Integer destination) {
 		destinationFloors.add(destination);	
 	}
 
