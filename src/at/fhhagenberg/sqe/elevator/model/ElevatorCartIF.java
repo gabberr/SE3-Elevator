@@ -4,7 +4,7 @@ public interface ElevatorCartIF {
 	  public void moveUp();
 	  public void moveDown();
 	  public void move();
-	  public void addDestinatoin(Integer destination);
+	  public void addDestination(Integer destination);
 	  public int getNextDestination();
 	  public int getCurrentFloor();
 	  

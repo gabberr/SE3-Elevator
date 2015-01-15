@@ -79,7 +79,7 @@ public class Elevator extends ElevatorAdapter {
 
 	@Override
 	public void setTarget(int elevatorNumber, int target) {
-		carts.get(elevatorNumber).addDestinatoin(target);
+		carts.get(elevatorNumber).addDestination(target);
 	}
 
 	/**
