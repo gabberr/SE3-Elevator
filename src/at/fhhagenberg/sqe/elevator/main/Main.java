@@ -1,7 +1,6 @@
 package at.fhhagenberg.sqe.elevator.main;
 
 
-import java.awt.Frame;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -10,7 +9,6 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.swing.JOptionPane;
 
 import sqelevator.IElevator;
 import at.fhhagenberg.sqe.elevator.controller.ViewController;
@@ -55,7 +53,7 @@ public class Main {
 		
 		client.addObserver(elevatorViewController);
 		
-		Timer timer = new Timer();
+		final Timer timer = new Timer();
 		timer.scheduleAtFixedRate(new TimerTask() {
 			@Override
 			public void run(){
@@ -64,6 +62,9 @@ public class Main {
 //					ele
 					
 				} catch (RemoteException e) {
+					this.cancel();
+					timer.cancel();
+					timer.purge();
 					e.printStackTrace();
 					
 				}
@@ -82,15 +83,20 @@ public class Main {
 			main.connect("rmi://localhost/ElevatorSim");
 			main.start();
 		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		}
-		catch ( RemoteException e) {
-			e.printStackTrace();
+			System.out.println("rmiregistry not running!");
+//			e.printStackTrace();
 		}
 		catch (NotBoundException e) {
+			
+			System.out.println("Server simulator not running!");
 			// TODO: handle exception
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
+		catch ( RemoteException e) {
+			System.out.println("Connection refused. ");
+//			e.printStackTrace();
+		}
+		
 		
 	}
 
